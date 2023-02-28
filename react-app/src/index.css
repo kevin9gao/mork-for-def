@@ -39,3 +39,15 @@ a {
   background-color:  rgb(172, 168, 168);
   border-radius: 10px;
 }
+
+button {
+  background-color: red;
+  padding: 1em;
+  border-radius: 20px;
+  font-size: 18px;
+  color: black;
+}
+button:hover {
+  background-color: rgba(109, 5, 5, 0.486);
+  color: white;
+}

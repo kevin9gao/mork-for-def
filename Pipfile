@@ -15,6 +15,7 @@ wtforms = "*"
 sqlalchemy = "*"
 flask-cors = "*"
 flask-login = "*"
+gunicorn = "*"
 
 [dev-packages]
 pylint = "*"
