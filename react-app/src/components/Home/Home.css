@@ -1,0 +1,83 @@
+main {
+  height: 100vh;
+}
+
+main h1 {
+  color: white;
+}
+
+.header {
+  display: flex;
+  height: 10vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.board {
+  height: 85vh;
+  width: 100vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.left {
+  height: 100%;
+  width: 45%;
+  border: 2px solid gray;
+}
+
+.right {
+  height: 100%;
+  width: 45%;
+  border: 2px solid gray;
+}
+
+.game-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.player.table {
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2em;
+  background-color: rgb(68, 66, 66);
+  border: 2px solid blue;
+  border-radius: 20px;
+}
+
+.player.headers,
+.player.table .row {
+  width: 90%;
+}
+
+.headers span,
+.row .name,
+.row .status {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  border: 2px solid black;
+}
+
+.player.headers {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.player.table .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

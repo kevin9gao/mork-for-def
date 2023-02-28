@@ -4,6 +4,7 @@ import './App.css';
 import SplashPage from './components/SplashPage/SplashPage';
 import SignupForm from './components/auth/SignupForm';
 import LoginForm from './components/auth/LoginForm';
+import Home from './components/Home/Home';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path='/' element={ <SplashPage /> } />
           <Route path='/signup' element={ <SignupForm /> } exact={true} />
           <Route path='/login' element={ <LoginForm /> } exact={true} />
+          <Route path='home' element={ <Home /> } />
         </Routes>
       </div>
     </BrowserRouter>
