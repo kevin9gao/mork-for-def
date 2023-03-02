@@ -5,10 +5,29 @@
 
 .users-lists ul {
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  list-style-type: none;
+}
+.users-lists {
+  height: 80vh;
+  width: 100%;
+}
+.all-users,
+.my-friends-list-wrapper {
+  height: 60vh;
+  width: 100%;
+  overflow-y: scroll;
+}
+.users-friends-wrapper {
+  display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
-  list-style-type: none;
+}
+#my-friends-list {
+  height: 60vh;
+  overflow-y: scroll;
 }
 
 .avatars {
@@ -20,12 +39,14 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin: .5em;
 }
 .user-usernames {
   margin-left: 1em;
 }
 .follow-btn button {
   height: 40px;
+  width: 100px;
   font-size: 15px;
   display: flex;
   justify-content: center;
@@ -36,4 +57,11 @@
 }
 .follow-btn button.friend {
   background-color: rgba(182, 37, 85, 0.815);
+}
+
+.users-lists li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 }

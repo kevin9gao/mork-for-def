@@ -44,19 +44,23 @@ export default function FriendsList() {
 
   return (
     <div className="users-lists">
-      <div className="all-users">
-        {allUsers && (
-          <ul id="all-users-list">
-            {allUsers}
-          </ul>
-        )}
-      </div>
-      <div className="friends-list-wrapper">
-        {myFriends && (
-          <ul id="my-friends-list">
-            {myFriends}
-          </ul>
-        )}
+      <div className="users-friends-wrapper">
+        <div className="all-users">
+          <h3>All Users</h3>
+          {allUsers && (
+            <ul id="all-users-list">
+              {allUsers}
+            </ul>
+          )}
+        </div>
+        <div className="my-friends-list-wrapper">
+          <h3>Friends</h3>
+          {myFriends && (
+            <ul id="my-friends-list">
+              {myFriends}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );

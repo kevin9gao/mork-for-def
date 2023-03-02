@@ -9,9 +9,11 @@ export default function Home() {
       <div className='header'>
         <h1>Mork Fuh Def</h1>
       </div>
-      <div className='games'></div>
-      <div className='friends-list-wrapper'>
-        <FriendsList />
+      <div className='home-body'>
+        <div className='games'></div>
+        <div className='friends-list-wrapper'>
+          <FriendsList />
+        </div>
       </div>
     </main>
   );
