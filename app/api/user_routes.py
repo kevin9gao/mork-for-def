@@ -24,7 +24,27 @@ def edit_user(id):
     print('-------FORM DATA---------', form.data)
     if form.validate_on_submit():
         data = form.data
-        user.annual_income = data['annual_income']
         user.profile_pic_url = data['profile_pic_url']
         db.session.commit()
         return user.to_dict()
+
+@user_routes.route('/<int:id>/friends')
+def friends_list(id):
+    user = User.query.get(id)
+    return {'friends': [friend.to_dict() for friend in user.friends]}
+
+@user_routes.route('/<int:befriender_id>/befriend/<int:befriended_id>', methods=['POST'])
+def befriend(befriender_id, befriended_id):
+    befriender = User.query.get(befriender_id)
+    befriended = User.query.get(befriended_id)
+    befriender.befriend(befriended)
+    db.session.commit()
+    return {'friends': [friend.to_dict() for friend in befriender.friends]}
+
+@user_routes.route('/<int:unfriender_id>/unfriend/<int:unfriended_id>', methods=['POST'])
+def unfriend(unfriender_id, unfriended_id):
+    unfriender = User.query.get(unfriender_id)
+    unfriended = User.query.get(unfriended_id)
+    unfriender.unfriend(unfriended)
+    db.session.commit()
+    return {'friends': [friend.to_dict() for friend in unfriender.friends]}

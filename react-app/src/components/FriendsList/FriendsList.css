@@ -1,0 +1,39 @@
+.users-lists {
+  display: flex;
+  flex-direction: column;
+}
+
+.users-lists ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  list-style-type: none;
+}
+
+.avatars {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.user-btns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.user-usernames {
+  margin-left: 1em;
+}
+.follow-btn button {
+  height: 40px;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.follow-btn button.not-friend {
+  background-color: rgba(128, 108, 202, 0.815);
+}
+.follow-btn button.friend {
+  background-color: rgba(182, 37, 85, 0.815);
+}

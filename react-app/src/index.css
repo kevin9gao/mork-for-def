@@ -17,7 +17,7 @@ code {
   background-color: black;
 }
 
-* {
+*, a {
   color: white;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   transition: all 1s ease;

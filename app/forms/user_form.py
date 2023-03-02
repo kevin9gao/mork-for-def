@@ -7,4 +7,3 @@ class UserForm(FlaskForm):
     username = StringField('username', validators=[DataRequired()])
     email = StringField('email', validators=[DataRequired()])
     profile_pic_url = StringField('profile_pic_url')
-    # password = StringField('password', validators=[DataRequired()])

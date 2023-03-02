@@ -8,9 +8,9 @@ const LogoutButton = ({ setShowMenu }) => {
   const navigate = useNavigate();
 
   const onLogout = async (e) => {
+    navigate('/');
     await dispatch(logout());
     setShowMenu(false);
-    navigate('/');
   };
 
   return <button className='log-out-btn' onClick={onLogout}>Logout</button>;

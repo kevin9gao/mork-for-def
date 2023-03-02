@@ -29,21 +29,22 @@ export default function ProfileButton({ user }) {
 
     setShowMenu(!showMenu);
   }
-  // useEffect(() => {
-  //   if (!showMenu) return;
 
-  //   const closeMenu = () => {
-  //     setShowMenu(false);
-  //   }
+  useEffect(() => {
+    if (!showMenu) return;
 
-  //   setTimeout(() => {
-  //     document.addEventListener('click', closeMenu);
-  //   }, 2000);
+    const escapeClose = e => {
+      if (e.key === 'Escape') {
+        setShowMenu(false);
+      }
+    }
 
-  //   // return () => document.removeEventListener('click', closeMenu);
-  // }, [showMenu]);
+    document.onkeydown = e => escapeClose(e);
 
-  console.log('showMenu', showMenu);
+    return () => document.onkeydown = e => e.preventDefault();
+  }, [showMenu]);
+
+  // console.log('showMenu', showMenu);
 
   return (
     <>
