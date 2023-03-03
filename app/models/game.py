@@ -36,6 +36,25 @@ class Game(db.Model):
     medium_status = db.Column(db.String(50))
     mystic_status = db.Column(db.String(50))
     antideath_status = db.Column(db.String(50))
+    villager_1 = db.Column(db.Integer)
+    villager_2 = db.Column(db.Integer)
+    villager_3 = db.Column(db.Integer)
+    villager_4 = db.Column(db.Integer)
+    villager_5 = db.Column(db.Integer)
+    villager_1_status = db.Column(db.String(50))
+    villager_2_status = db.Column(db.String(50))
+    villager_3_status = db.Column(db.String(50))
+    villager_4_status = db.Column(db.String(50))
+    villager_5_status = db.Column(db.String(50))
+    evos_1 = db.Column(db.Integer)
+    evos_2 = db.Column(db.Integer)
+    evos_3 = db.Column(db.Integer)
+    evos_4 = db.Column(db.Integer)
+    evos_1_status = db.Column(db.String(50))
+    evos_2_status = db.Column(db.String(50))
+    evos_3_status = db.Column(db.String(50))
+    evos_4_status = db.Column(db.String(50))
+
 
     def to_dict(self):
         return {
@@ -53,6 +72,15 @@ class Game(db.Model):
           'medium': [self.medium, self.medium_status],
           'mystic': [self.mystic, self.mystic_status],
           'antideath': [self.antideath, self.antideath_status],
+          'villager_1': [self.villager_1, self.villager_1_status],
+          'villager_2': [self.villager_2, self.villager_2_status],
+          'villager_3': [self.villager_3, self.villager_3_status],
+          'villager_4': [self.villager_4, self.villager_4_status],
+          'villager_5': [self.villager_5, self.villager_5_status],
+          'evos_1': [self.evos_1, self.evos_1_status],
+          'evos_2': [self.evos_2, self.evos_2_status],
+          'evos_3': [self.evos_3, self.evos_3_status],
+          'evos_4': [self.evos_4, self.evos_4_status],
         }
 
     players = db.relationship('User',
