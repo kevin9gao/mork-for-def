@@ -48,3 +48,9 @@ def unfriend(unfriender_id, unfriended_id):
     unfriender.unfriend(unfriended)
     db.session.commit()
     return {'friends': [friend.to_dict() for friend in unfriender.friends]}
+
+@user_routes.route('/<int:id>/games')
+def get_users_games(id):
+    user = User.query.get(id)
+    games = user.games
+    return {'games': [game.to_dict() for game in games]}
