@@ -45,6 +45,7 @@ class User(db.Model, UserMixin):
     games = db.relationship('Game',
         secondary=members,
         back_populates='players')
+    game_invites = db.relationship('GameInvite', back_populates='invited')
 
     def befriend(self, friend):
         if friend not in self.friends:

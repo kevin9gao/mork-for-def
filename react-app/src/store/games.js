@@ -2,6 +2,8 @@ const LOAD = 'games/LOAD';
 const ADD = 'games/ADD';
 const UPDATE = 'games/UPDATE';
 const REMOVE = 'games/REMOVE';
+const INVITE = 'games/INVITE';
+const RESPOND = 'games/RESPOND';
 
 const load = list => ({
   type: LOAD,
@@ -21,6 +23,16 @@ const update = game => ({
 const remove = gameId => ({
   type: REMOVE,
   gameId
+})
+
+const invite = invite => ({
+  type: INVITE,
+  invite
+})
+
+const respond = game => ({
+  type: RESPOND,
+  game
 })
 
 export const loadAllGames = () => async dispatch => {
@@ -91,6 +103,42 @@ export const deleteGame = gameId => async dispatch => {
   }
 }
 
+export const inviteUserToGame = (payload, invitedId, gameId) => async dispatch => {
+  const res = await fetch(`/api/games/${gameId}/invite/${invitedId}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+
+  if (res.ok) {
+    const invite = await res.json();
+    dispatch(invite(invite));
+    return invite;
+  }
+}
+
+export const respondToInvite = (inviteId, accepted) => async dispatch => {
+  let res;
+
+  if (accepted) {
+    res = await fetch(`/api/games/invites/${inviteId}/accept`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+  } else {
+    res = await fetch(`/api/games/invites/${inviteId}/reject`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
+  if (res.ok) {
+    const game = await res.json()
+    dispatch(respond(game));
+    return game;
+  }
+}
+
 let newState;
 export default function gamesReducer(state = {}, action) {
   switch (action.type) {
@@ -114,6 +162,20 @@ export default function gamesReducer(state = {}, action) {
     case REMOVE:
       newState = { ...state };
       delete newState[action.gameId];
+      return newState;
+    case INVITE:
+      newState = { ...state };
+      if (!newState['invites-sent']) newState['invites-sent'] = {};
+      newState['invites-sent'][action.invite.id] = action.invite;
+      return newState;
+    case RESPOND:
+      newState = { ...state };
+      if (action.game['games']) {
+        const games = action.game['games'];
+        games.forEach(game => {
+          newState[game.id] = game;
+        })
+      }
       return newState;
     default:
       return state;

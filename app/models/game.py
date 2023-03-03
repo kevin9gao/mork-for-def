@@ -16,6 +16,7 @@ class Game(db.Model):
     num_players = db.Column(db.Integer, nullable=False)
     phase = db.Column(db.String(100), nullable=False)
     active = db.Column(db.Boolean, nullable=False, default=True)
+    creator_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     death = db.Column(db.Integer)
     time_shifter = db.Column(db.Integer)
     cultist = db.Column(db.Integer)

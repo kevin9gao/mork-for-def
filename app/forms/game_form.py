@@ -7,6 +7,7 @@ class GameForm(FlaskForm):
     num_players = IntegerField('num_players', validators=[DataRequired()])
     phase = StringField('phase', validators=[DataRequired()])
     active = BooleanField('active', validators=[DataRequired()])
+    creator_id = IntegerField('creator_id', validators=[DataRequired()])
     death = IntegerField('death')
     time_shifter = IntegerField('time_shifter')
     cultist = IntegerField('cultist')
