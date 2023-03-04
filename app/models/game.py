@@ -90,3 +90,5 @@ class Game(db.Model):
         secondary=members,
         back_populates='games'
         )
+
+    invites = db.relationship('GameInvite', back_populates='game')

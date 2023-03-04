@@ -25,7 +25,7 @@ const remove = gameId => ({
   gameId
 })
 
-const invite = invite => ({
+const extendInvite = invite => ({
   type: INVITE,
   invite
 })
@@ -112,7 +112,7 @@ export const inviteUserToGame = (payload, invitedId, gameId) => async dispatch =
 
   if (res.ok) {
     const invite = await res.json();
-    dispatch(invite(invite));
+    dispatch(extendInvite(invite));
     return invite;
   }
 }
@@ -139,6 +139,16 @@ export const respondToInvite = (inviteId, accepted) => async dispatch => {
   }
 }
 
+export const loadInvites = gameId => async dispatch => {
+  const res = await fetch(`/api/games/${gameId}/invites`);
+
+  if (res.ok) {
+    const list = await res.json();
+    dispatch(load(list));
+    return list;
+  }
+}
+
 let newState;
 export default function gamesReducer(state = {}, action) {
   switch (action.type) {
@@ -148,6 +158,12 @@ export default function gamesReducer(state = {}, action) {
         const games = action.list['games'];
         games.forEach(game => {
           newState[game.id] = game;
+        })
+      } else if (action.list['invites']) {
+        if (!newState['invites-sent']) newState['invites-sent'] = {};
+        const invites = action.list['invites'];
+        invites.forEach(invite => {
+          newState['invites-sent'][invite.id] = invite;
         })
       } else {
         const game = action.list;

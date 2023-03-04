@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { loadGame, updateGame } from "../../store/games";
+import { loadGame, loadInvites, updateGame } from "../../store/games";
 import { loadFriendsList } from "../../store/users";
 import UserInvite from "./UserInvite";
 
@@ -15,6 +15,7 @@ export default function NewGameSetup() {
   useEffect(() => {
     dispatch(loadFriendsList(sessionUser.id));
     dispatch(loadGame(gameId));
+    dispatch(loadInvites(gameId));
   }, []);
 
   const game = useSelector(state => state.games.current);

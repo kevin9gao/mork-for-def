@@ -106,7 +106,7 @@ def invite_to_game(game_id, invited_id):
         invited = User.query.get(invited_id)
         invited.game_invites.append(invite)
         db.session.commit()
-        return invite
+        return invite.to_dict()
 
 @game_routes.route('/invites/<int:invite_id>/accept', methods=['POST'])
 def accept_invite(invite_id):
@@ -127,3 +127,9 @@ def reject_invite(invite_id):
     db.session.commit()
     game = Game.query.get(invite.game_id)
     return game.to_dict()
+
+@game_routes.route('/<int:game_id>/invites')
+def get_invites(game_id):
+    game = Game.query.get(game_id)
+    invites = game.invites
+    return {'invites': [invite.to_dict() for invite in invites]}
