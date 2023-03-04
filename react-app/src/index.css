@@ -26,10 +26,11 @@ code {
 button,
 a {
   cursor: pointer;
+  text-decoration: none;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 ::-webkit-scrollbar-thumb {
   background-color: rgb(94, 93, 93);
@@ -50,4 +51,15 @@ button {
 button:hover {
   background-color: rgba(109, 5, 5, 0.486);
   color: white;
+}
+
+input {
+  background-color: rgba(155, 11, 47, 0.644);
+  border-radius: 5px;
+  padding: 1em;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
 }

@@ -20,8 +20,10 @@ def create_game():
     form = GameForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        print('validated on submit')
         data = form.data
-        game = Game(num_players=data['num_players'],
+        game = Game(name=data['name'],
+                    num_players=data['num_players'],
                     phase=data['phase'],
                     active=data['active'],
                     creator_id=data['creator_id'],
@@ -46,13 +48,13 @@ def create_game():
                     mystic_status=data['mystic_status'],
                     antideath_status=data['antideath_status'])
         db.session.add(game)
-        players = [data['death'], data['time_shifter'], data['cultist'], data['necromancer'],
-                   data['disruptor'], data['psychic'], data['jesus'], data['medium'],
-                   data['mystic'], data['antideath']]
-        for player_id in players:
-            if player_id:
-                player = User.query.get(player_id)
-                player.games.append(game)
+        # players = [data['death'], data['time_shifter'], data['cultist'], data['necromancer'],
+        #            data['disruptor'], data['psychic'], data['jesus'], data['medium'],
+        #            data['mystic'], data['antideath']]
+        # for player_id in players:
+        #     if player_id:
+        #         player = User.query.get(player_id)
+        #         player.games.append(game)
         creator = User.query.get(data['creator_id'])
         game.players.append(creator)
         db.session.commit()
@@ -66,6 +68,7 @@ def update_game(id):
         game = Game.query.get(id)
         data = request.json
         # data = form.data
+        game.name=data['name']
         game.phase=data['phase']
         game.active=data['active']
         game.death=data['death']
@@ -119,6 +122,7 @@ def accept_invite(invite_id):
     game = Game.query.get(invite.game_id)
     invited = User.query.get(invite.invited_id)
     game.players.append(invited)
+    game.num_players += 1
     db.session.commit()
     invited_games = invited.games
     return {'games': game.to_dict() for game in invited_games}

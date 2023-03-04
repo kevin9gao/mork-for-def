@@ -1,13 +1,22 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { inviteUserToGame } from "../../store/games";
 
-export default function UserInvite({ user }) {
+export default function UserInvite({ user, game }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
 
   const handleInvite = e => {
     e.preventDefault();
+
+    const payload = {
+      inviter_id: sessionUser.id,
+      invited_id: user.id,
+      game_id: game.id
+    };
+
+    dispatch(inviteUserToGame(payload, user.id, game.id));
   }
 
   if (!sessionUser) return null;

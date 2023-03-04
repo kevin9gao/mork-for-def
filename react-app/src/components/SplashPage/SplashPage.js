@@ -1,9 +1,13 @@
 import React from "react";
 import './SplashPage.css';
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function SplashPage() {
   const navigate = useNavigate();
+  const sessionUser = useSelector(state => state.session.user);
+
+  if (sessionUser) navigate('/home');
 
   return (
     <div className="splash-page-wrapper">

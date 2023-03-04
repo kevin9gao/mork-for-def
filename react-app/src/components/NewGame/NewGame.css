@@ -6,3 +6,96 @@
   justify-content: center;
   align-items: center;
 }
+
+.new-game-setup-wrapper {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-wrapper {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.new-game-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 90%;
+}
+.new-game-form > div {
+  width: 90%;
+}
+
+.game-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.game-header span {
+  font-size: 20px;
+}
+.game-header input {
+  margin: 1em;
+  font-size: 20px;
+  padding: .5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+.game-invite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.game-invite span {
+  font-size: 18px;
+}
+.game-invite ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 20vh;
+  overflow-y: scroll;
+  border: 2px solid gray;
+}
+
+
+
+/* UserInvite */
+
+.game-invite li {
+  border: 2px solid gray;
+  margin: 2em .5em;
+  width: 12vw;
+  height: 12vh;
+  display: flex;
+  flex-direction: column;
+  padding: .5em;
+}
+.game-invite .invite-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game-invite .user-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.game-invite .user-pics {
+  width: 4vw;
+  display: flex;
+  justify-content: center;
+}
+.game-invite .user-usernames {
+  width: 5vw;
+}

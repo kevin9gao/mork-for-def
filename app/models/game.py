@@ -13,6 +13,7 @@ class Game(db.Model):
     __tablename__ = 'games'
 
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(256), nullable=False)
     num_players = db.Column(db.Integer, nullable=False)
     phase = db.Column(db.String(100), nullable=False)
     active = db.Column(db.Boolean, nullable=False, default=True)
@@ -60,6 +61,7 @@ class Game(db.Model):
     def to_dict(self):
         return {
           'id': self.id,
+          'name': self.name,
           'num_players': self.num_players,
           'phase': self.phase,
           'active': self.active,

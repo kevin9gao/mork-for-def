@@ -4,6 +4,7 @@ from wtforms.validators import DataRequired
 
 
 class GameForm(FlaskForm):
+    name = StringField('name', validators=[DataRequired()])
     num_players = IntegerField('num_players', validators=[DataRequired()])
     phase = StringField('phase', validators=[DataRequired()])
     active = BooleanField('active', validators=[DataRequired()])

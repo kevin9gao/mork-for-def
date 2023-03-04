@@ -149,11 +149,16 @@ export default function gamesReducer(state = {}, action) {
         games.forEach(game => {
           newState[game.id] = game;
         })
+      } else {
+        const game = action.list;
+        newState[game.id] = game;
+        newState['current'] = game;
       }
       return newState;
     case ADD:
       newState = { ...state };
       newState[action.game.id] = action.game;
+      newState['current'] = action.game;
       return newState;
     case UPDATE:
       newState = { ...state };

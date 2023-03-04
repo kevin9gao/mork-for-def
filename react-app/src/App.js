@@ -10,6 +10,7 @@ import Navbar from './components/Navigation/Navbar';
 import { useEffect, useState } from 'react';
 import { authenticate } from './store/session';
 import SingleGame from './components/SingleGame';
+import NewGameSetup from './components/NewGame/NewGameSetup';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -37,6 +38,7 @@ function App() {
             <Route path='/signup' element={ <SignupForm /> } exact={true} />
             <Route path='/login' element={ <LoginForm /> } exact={true} />
             <Route path='/home' element={ <Home /> } />
+            <Route path='/games/:gameId/setup' element={ <NewGameSetup /> } exact={true} />
             <Route path='/games/:gameId' element={ <SingleGame /> } />
           </Routes>
         </main>
