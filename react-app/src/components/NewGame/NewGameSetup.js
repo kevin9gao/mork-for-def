@@ -21,11 +21,21 @@ export default function NewGameSetup() {
   const [name, setName] = useState(game?.name);
   const [phase, setPhase] = useState(game?.phase);
   const [active, setActive] = useState(game?.active);
+  // console.log('gameId', gameId)
+  console.log('game', game)
   console.log('name', name)
   console.log('phase', phase)
   console.log('active', active)
+  // console.log('game.name', game?.name)
 
-  const handleSubmit = e => {
+  // useEffect(() => {
+  //   dispatch(loadGame(gameId));
+  //   setName(game?.name);
+  //   setPhase(game?.phase);
+  //   setActive(game?.active);
+  // }, []);
+
+  const handleSubmit = async e => {
     e.preventDefault();
 
     const payload = {
@@ -34,7 +44,9 @@ export default function NewGameSetup() {
       active,
     };
 
-    dispatch(updateGame(game.id, payload));
+    const updatedGame = await dispatch(updateGame(game.id, payload));
+
+    if (updatedGame) navigate('/home');
   }
 
   const friendsArray = friends ? Object.values(friends) : null;

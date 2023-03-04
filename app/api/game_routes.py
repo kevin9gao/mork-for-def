@@ -20,7 +20,7 @@ def create_game():
     form = GameForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print('validated on submit')
+        # print('validated on submit')
         data = form.data
         game = Game(name=data['name'],
                     num_players=data['num_players'],
@@ -62,35 +62,28 @@ def create_game():
 
 @game_routes.route('/<int:id>', methods=['PUT'])
 def update_game(id):
+    print('-------HIT update_game ROUTE---------')
     form = UpdateGameForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        print('-------VALIDATED ON SUBMIT---------')
         game = Game.query.get(id)
         data = request.json
         # data = form.data
         game.name=data['name']
         game.phase=data['phase']
         game.active=data['active']
-        game.death=data['death']
-        game.time_shifter=data['time_shifter']
-        game.cultist=data['cultist']
-        game.necromancer=data['necromancer']
-        game.disruptor=data['disruptor']
-        game.psychic=data['psychic']
-        game.jesus=data['jesus']
-        game.medium=data['medium']
-        game.mystic=data['mystic']
-        game.antideath=data['antideath']
-        game.death_status=data['death_status']
-        game.time_shifter_status=data['time_shifter_status']
-        game.cultist_status=data['cultist_status']
-        game.necromancer_status=data['necromancer_status']
-        game.disruptor_status=data['disruptor_status']
-        game.psychic_status=data['psychic_status']
-        game.jesus_status=data['jesus_status']
-        game.medium_status=data['medium_status']
-        game.mystic_status=data['mystic_status']
-        game.antideath_status=data['antideath_status']
+        roles = ['death', 'time_shifter', 'cultist', 'necromancer', 'disruptor',
+                 'psychic', 'jesus', 'medium', 'mystic', 'antideath', 'villager_1',
+                 'villager_2', 'villager_3', 'villager_4', 'villager_5', 'evos_1',
+                 'evos_2', 'evos_3', 'evos_4']
+        # print('-------------DEATH-----------', game.death, data['death'])
+        for role in roles:
+            try:
+                game[role]=data[role]
+                game[f'{role}_status']=data[f'{role}_status']
+            except:
+                continue
         db.session.commit()
         return game.to_dict()
 
