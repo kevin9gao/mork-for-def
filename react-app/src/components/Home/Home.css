@@ -10,6 +10,10 @@ main {
 
 .games {
   width: 60vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .friends-list-wrapper {
