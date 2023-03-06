@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { loadGame, loadInvites, updateGame } from "../../store/games";
+import { loadGame, loadInvites, loadUsersGames, updateGame } from "../../store/games";
 import { loadFriendsList } from "../../store/users";
 import UserInvite from "./UserInvite";
 
@@ -11,30 +11,31 @@ export default function NewGameSetup() {
   const { gameId } = useParams();
   const sessionUser = useSelector(state => state.session.user);
   const friends = useSelector(state => state.users.friends);
-
-  useEffect(() => {
-    dispatch(loadFriendsList(sessionUser.id));
-    dispatch(loadGame(gameId));
-    dispatch(loadInvites(gameId));
-  }, []);
-
-  const game = useSelector(state => state.games.current);
-  const [name, setName] = useState(game?.name);
-  const [phase, setPhase] = useState(game?.phase);
-  const [active, setActive] = useState(game?.active);
-  // console.log('gameId', gameId)
+  const [game, setGame] = useState({});
+  const [name, setName] = useState('');
+  const [phase, setPhase] = useState('');
+  const [active, setActive] = useState(true);
+  console.log('gameId', gameId)
   console.log('game', game)
   console.log('name', name)
   console.log('phase', phase)
   console.log('active', active)
   // console.log('game.name', game?.name)
 
-  // useEffect(() => {
-  //   dispatch(loadGame(gameId));
-  //   setName(game?.name);
-  //   setPhase(game?.phase);
-  //   setActive(game?.active);
-  // }, []);
+  useEffect(() => {
+    dispatch(loadFriendsList(sessionUser.id));
+    dispatch(loadUsersGames(sessionUser.id));
+    dispatch(loadInvites(gameId));
+
+    async function fetchGame() {
+      const fetchedGame = await dispatch(loadGame(gameId));
+      setGame(fetchedGame);
+      setName(fetchedGame.name);
+      setPhase(fetchedGame.phase);
+      setActive(fetchedGame.active);
+    };
+    fetchGame();
+  }, []);
 
   const handleSubmit = async e => {
     e.preventDefault();
