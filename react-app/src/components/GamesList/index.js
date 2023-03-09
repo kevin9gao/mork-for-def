@@ -29,7 +29,12 @@ export default function GamesList() {
               <span>{game.num_players}</span>
             </div>
             <div>
-              <NavLink to={`/games/${game.id}`}>Play</NavLink>
+              {(game.phase === 'setup') && (
+                <NavLink to={`/games/${game.id}/setup`}>Finish Setup</NavLink>
+              )}
+              {!(game.phase === 'setup') && (
+                <NavLink to={`/games/${game.id}`}>Play</NavLink>
+              )}
             </div>
           </div>
         </li>

@@ -132,4 +132,4 @@ def reject_invite(invite_id):
 def get_invites(game_id):
     game = Game.query.get(game_id)
     invites = game.invites
-    return {'invites': [invite.to_dict() for invite in invites]}
+    return {'invites_sent': [invite.to_dict() for invite in invites]}

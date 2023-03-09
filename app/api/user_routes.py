@@ -54,3 +54,9 @@ def get_users_games(id):
     user = User.query.get(id)
     games = user.games
     return {'games': [game.to_dict() for game in games]}
+
+@user_routes.route('/<int:id>/invites-received')
+def get_invites_received(id):
+    user = User.query.get(id)
+    invites = user.game_invites
+    return {'invites_received': [invite.to_dict() for invite in invites]}
