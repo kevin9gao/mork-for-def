@@ -1,7 +1,6 @@
 const LOAD = 'invites/LOAD';
 const ADD = 'invites/ADD';
-const ACCEPT = 'invites/ACCEPT';
-const REJECT = 'invites/REJECT';
+const RESPOND = 'invites/RESPOND';
 
 const load = list => ({
   type: LOAD,
@@ -13,15 +12,21 @@ const add = invite => ({
   invite
 })
 
-const accept = game => ({
-  type: ACCEPT,
-  game
+const respond = invite => ({
+  type: RESPOND,
+  invite
 })
 
-const reject = game => ({
-  type: REJECT,
-  game
-})
+
+export const loadUserInvites = userId => async dispatch => {
+  const res = await fetch(`/api/users/${userId}/invites-received`);
+
+  if (res.ok) {
+    const list = await res.json();
+    dispatch(load(list));
+    return list;
+  }
+}
 
 export const loadGameInvites = gameId => async dispatch => {
   const res = await fetch(`/api/games/${gameId}/invites`);
@@ -54,9 +59,9 @@ export const acceptInvite = inviteId => async dispatch => {
   })
 
   if (res.ok) {
-    const game = await res.json();
-    dispatch(accept(game));
-    return game;
+    const invite = await res.json();
+    dispatch(respond(invite));
+    return invite;
   }
 }
 
@@ -67,9 +72,9 @@ export const rejectInvite = inviteId => async dispatch => {
   })
 
   if (res.ok) {
-    const game = await res.json();
-    dispatch(reject(game));
-    return game;
+    const invite = await res.json();
+    dispatch(respond(invite));
+    return invite;
   }
 }
 
@@ -79,16 +84,29 @@ export default function invitesReducer(state = {}, action) {
     case LOAD:
       newState = { ...state };
       if (action.list['invites_sent']) {
-        newState['invites-sent'] = {};
+        if (!newState['invites-sent']) newState['invites-sent'] = {};
         const invitesSent = action.list['invites_sent'];
         invitesSent.forEach(invite => {
           newState['invites-sent'][invite.id] = invite;
         })
+      } else if (action.list['invites_received']) {
+        if (!newState['invites-received']) newState['invites-received'] = {};
+        const invitesReceived = action.list['invites_received'];
+        invitesReceived.forEach(invite => {
+          newState['invites-received'][invite.id] = invite;
+        })
       }
+      return newState;
+    case ADD:
+      newState = { ...state };
+      if (!newState['invites-sent']) newState['invites-sent'] = {};
+      newState['invites-sent'][action.invite.id] = action.invite;
+      return newState;
+    case RESPOND:
+      newState = { ...state };
+      delete newState['invites-received'][action.invite.id];
       return newState;
     default:
       return state;
   }
 }
-
-// TAKING DINDIN ON WALK WILL B BACK IN 20 OR SO

@@ -99,3 +99,7 @@
 .game-invite .user-usernames {
   width: 5vw;
 }
+.game-invite .invited {
+  background-color: rgba(109, 5, 5, 0.486);
+  color: white;
+}

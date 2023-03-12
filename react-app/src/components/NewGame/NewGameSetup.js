@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { loadGame, loadInvites, loadUsersGames, updateGame } from "../../store/games";
+import { loadGame, loadUsersGames, updateGame } from "../../store/games";
+import { loadGameInvites } from "../../store/invites";
 import { loadFriendsList } from "../../store/users";
 import UserInvite from "./UserInvite";
 
@@ -25,7 +26,7 @@ export default function NewGameSetup() {
   useEffect(() => {
     dispatch(loadFriendsList(sessionUser.id));
     dispatch(loadUsersGames(sessionUser.id));
-    dispatch(loadInvites(gameId));
+    dispatch(loadGameInvites(gameId));
 
     async function fetchGame() {
       const fetchedGame = await dispatch(loadGame(gameId));
