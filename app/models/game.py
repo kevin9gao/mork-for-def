@@ -65,6 +65,7 @@ class Game(db.Model):
           'num_players': self.num_players,
           'phase': self.phase,
           'active': self.active,
+          'creator_id': self.creator_id,
           'death': [self.death, self.death_status],
           'time_shifter': [self.time_shifter, self.time_shifter_status],
           'cultist': [self.cultist, self.cultist_status],

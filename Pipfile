@@ -5,16 +5,16 @@ name = "pypi"
 
 [packages]
 psycopg2-binary = "*"
-flask-sqlalchemy = "*"
+Flask-sqlalchemy = "*"
 alembic = "*"
-flask-migrate = "*"
-flask = "*"
+Flask-migrate = "*"
+Flask = "*"
 python-dotenv = "*"
-flask-wtf = "*"
+Flask-wtf = "*"
 wtforms = "*"
 sqlalchemy = "*"
-flask-cors = "*"
-flask-login = "*"
+Flask-cors = "*"
+Flask-login = "*"
 gunicorn = "*"
 
 [dev-packages]

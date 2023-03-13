@@ -5,7 +5,7 @@ import SplashPage from './components/SplashPage/SplashPage';
 import SignupForm from './components/auth/SignupForm';
 import LoginForm from './components/auth/LoginForm';
 import Home from './components/Home/Home';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Navbar from './components/Navigation/Navbar';
 import { useEffect, useState } from 'react';
 import { authenticate } from './store/session';
@@ -14,7 +14,6 @@ import NewGameSetup from './components/NewGame/NewGameSetup';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
-  const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   useEffect(() => {

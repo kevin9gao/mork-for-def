@@ -124,7 +124,6 @@ def reject_invite(invite_id):
     invite = GameInvite.query.get(invite_id)
     invite.rejected=True
     db.session.commit()
-    game = Game.query.get(invite.game_id)
     return invite.to_dict()
 
 @game_routes.route('/<int:game_id>/invites')

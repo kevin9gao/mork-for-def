@@ -2,8 +2,7 @@ const LOAD = 'games/LOAD';
 const ADD = 'games/ADD';
 const UPDATE = 'games/UPDATE';
 const REMOVE = 'games/REMOVE';
-// const INVITE = 'games/INVITE';
-// const RESPOND = 'games/RESPOND';
+const ACCEPT = 'games/ACCEPT';
 
 const load = list => ({
   type: LOAD,
@@ -25,15 +24,10 @@ const remove = gameId => ({
   gameId
 })
 
-// const extendInvite = invite => ({
-//   type: INVITE,
-//   invite
-// })
-
-// const respond = game => ({
-//   type: RESPOND,
-//   game
-// })
+const accept = game => ({
+  type: ACCEPT,
+  game
+})
 
 export const loadAllGames = () => async dispatch => {
   const res = await fetch('/api/games/');
@@ -103,51 +97,15 @@ export const deleteGame = gameId => async dispatch => {
   }
 }
 
-// export const inviteUserToGame = (payload, invitedId, gameId) => async dispatch => {
-//   const res = await fetch(`/api/games/${gameId}/invite/${invitedId}`, {
-//     method: 'POST',
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify(payload)
-//   })
+export const acceptGameInvite = gameId => async dispatch => {
+  const res = await fetch(`/api/games/${gameId}`);
 
-//   if (res.ok) {
-//     const invite = await res.json();
-//     dispatch(extendInvite(invite));
-//     return invite;
-//   }
-// }
-
-// export const respondToInvite = (inviteId, accepted) => async dispatch => {
-//   let res;
-
-//   if (accepted) {
-//     res = await fetch(`/api/games/invites/${inviteId}/accept`, {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' }
-//     });
-//   } else {
-//     res = await fetch(`/api/games/invites/${inviteId}/reject`, {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' }
-//     });
-//   }
-
-//   if (res.ok) {
-//     const game = await res.json()
-//     dispatch(respond(game));
-//     return game;
-//   }
-// }
-
-// export const loadInvites = gameId => async dispatch => {
-//   const res = await fetch(`/api/games/${gameId}/invites`);
-
-//   if (res.ok) {
-//     const list = await res.json();
-//     dispatch(load(list));
-//     return list;
-//   }
-// }
+  if (res.ok) {
+    const game = await res.json();
+    dispatch(accept(game));
+    return game;
+  }
+}
 
 let newState;
 export default function gamesReducer(state = {}, action) {
@@ -155,15 +113,10 @@ export default function gamesReducer(state = {}, action) {
     case LOAD:
       newState = { ...state };
       if (action.list['games']) {
+        newState = {};
         const games = action.list['games'];
         games.forEach(game => {
           newState[game.id] = game;
-        })
-      } else if (action.list['invites']) {
-        if (!newState['invites-sent']) newState['invites-sent'] = {};
-        const invites = action.list['invites'];
-        invites.forEach(invite => {
-          newState['invites-sent'][invite.id] = invite;
         })
       } else {
         const game = action.list;
@@ -182,20 +135,10 @@ export default function gamesReducer(state = {}, action) {
       newState = { ...state };
       delete newState[action.gameId];
       return newState;
-    // case INVITE:
-    //   newState = { ...state };
-    //   if (!newState['invites-sent']) newState['invites-sent'] = {};
-    //   newState['invites-sent'][action.invite.id] = action.invite;
-    //   return newState;
-    // case RESPOND:
-    //   newState = { ...state };
-    //   if (action.game['games']) {
-    //     const games = action.game['games'];
-    //     games.forEach(game => {
-    //       newState[game.id] = game;
-    //     })
-    //   }
-    //   return newState;
+    case ACCEPT:
+      newState = { ...state };
+      newState[action.game.id] = action.game;
+      return newState;
     default:
       return state;
   }

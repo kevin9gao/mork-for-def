@@ -5,13 +5,15 @@ main {
 .home-body {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
   height: 100%;
 }
 
 .games {
-  width: 60vw;
+  width: 58vw;
   height: 90vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }

@@ -41,7 +41,7 @@ export default function ProfileButton({ user }) {
 
     document.onkeydown = e => escapeClose(e);
 
-    return () => document.onkeydown = e => e.preventDefault();
+    return () => document.onkeydown = e => {};
   }, [showMenu]);
 
   // console.log('showMenu', showMenu);
