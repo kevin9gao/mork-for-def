@@ -28,7 +28,7 @@ export default function FriendsList() {
   const friendsIds = friends ? Object.keys(friends) : null;
   const friendsArray = friends ? Object.values(friends) : null;
 
-  const allUsers = users?.filter(user => user.id !== sessionUser.id).map(user => {
+  const allUsers = users?.filter(user => user.id !== sessionUser?.id).map(user => {
     return (
       <User user={user} />
     );

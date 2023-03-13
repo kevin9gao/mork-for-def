@@ -1,0 +1,77 @@
+.games-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 45vh;
+  width: 100%;
+}
+.games-list-wrapper h2 {
+  margin: .2em 0;
+}
+
+#my-games {
+  height: 38vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+#my-games-ul {
+  width: 80%;
+}
+
+#my-games-ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid gray;
+  margin: .5em;
+}
+
+.games-list-ele {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 5vh;
+  margin: .1em;
+}
+.games-list-ele > div {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.games-list-ele > div span {
+  height: 50%;
+}
+
+/* InvitesList */
+
+.invite-list-wrapper {
+  height: 45vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.games-list-ele button {
+  background-color: red;
+  padding: .3em;
+  border-radius: 10px;
+  font-size: 18px;
+  color: black;
+}
+.games-list-ele button:hover {
+  background-color: rgba(109, 5, 5, 0.486);
+  color: white;
+}

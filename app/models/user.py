@@ -1,4 +1,5 @@
 from .db import db
+from app.models.game import members
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -41,6 +42,10 @@ class User(db.Model, UserMixin):
                               secondary=friendship,
                               primaryjoin=id==friendship.c.friend_a_id,
                               secondaryjoin=id==friendship.c.friend_b_id)
+    games = db.relationship('Game',
+        secondary=members,
+        back_populates='players')
+    game_invites = db.relationship('GameInvite', back_populates='invited')
 
     def befriend(self, friend):
         if friend not in self.friends:

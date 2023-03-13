@@ -8,9 +8,6 @@ export default function SingleGame() {
 
   return (
     <main>
-      <div className='header'>
-        <h1>Mork Fuh Def</h1>
-      </div>
       <div className='board'>
         <div className='left'>
           <GameState />

@@ -10,13 +10,14 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: space-between;
   list-style-type: none;
+  padding-left: 0;
 }
 .all-users,
 .my-friends-list-wrapper {
   height: 60vh;
-  width: 100%;
+  width: 50%;
   overflow-y: scroll;
   border: 2px solid gray;
   display: flex;
@@ -42,6 +43,7 @@
 }
 .user-usernames {
   margin-left: 1em;
+  overflow-x: hidden;
 }
 .follow-btn button {
   height: 40px;
@@ -62,5 +64,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+.users-lists li a {
+  width: 10vw;
 }
