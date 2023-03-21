@@ -10,8 +10,8 @@ export default function GamesList() {
   const games = useSelector(state => state.games);
   const gamesArray = games ? Object.values(games) : null;
   // const [gamesArray, setGamesArray] = useState([]);
-  console.log('gamesArray', gamesArray);
-  console.log('sessionUser', sessionUser)
+  // console.log('gamesArray', gamesArray);
+  // console.log('sessionUser', sessionUser)
 
   useEffect(() => {
     dispatch(loadUsersGames(sessionUser?.id));
@@ -40,7 +40,10 @@ export default function GamesList() {
               {(game.phase === 'setup') && (
                 <NavLink to={`/games/${game.id}/setup`}>Finish Setup</NavLink>
               )}
-              {!(game.phase === 'setup') && (
+              {(game.phase === 'role-selection') && (
+                <NavLink to={`/games/${game.id}/roles`}>Select Roles</NavLink>
+              )}
+              {(game.phase === 'play') && (
                 <NavLink to={`/games/${game.id}`}>Play</NavLink>
               )}
             </div>
@@ -66,7 +69,7 @@ export default function GamesList() {
               {(game.phase === 'setup') && (
                 <NavLink to={`/games/${game.id}/setup`}>Awaiting Setup...</NavLink>
               )}
-              {!(game.phase === 'setup') && (
+              {(game.phase === 'play') && (
                 <NavLink to={`/games/${game.id}`}>Play</NavLink>
               )}
             </div>

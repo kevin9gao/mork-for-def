@@ -16,6 +16,7 @@
 .form-wrapper {
   width: 90%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -28,6 +29,26 @@
 }
 .new-game-form > div {
   width: 90%;
+}
+.new-game-form > button {
+  margin: 1em 0 0 0;
+  background-color: rgba(43, 111, 201, 0.705);
+}
+.new-game-form > button:hover {
+  background-color: rgba(47, 29, 151, 0.76);
+}
+#start-game-btn {
+  background-color: rgba(43, 201, 193, 0.705);
+}
+#start-game-btn:hover {
+  background-color: rgba(18, 92, 46, 0.76);
+}
+
+.new-game-form > button,
+#start-game-btn,
+#delete-game-btn {
+  padding: .5em;
+  border-radius: 10px;
 }
 
 .game-header {
@@ -47,6 +68,9 @@
   align-items: center;
   background-color: black;
 }
+.game-header h3 {
+  font-size: 24px;
+}
 
 .game-invite {
   display: flex;
@@ -55,6 +79,7 @@
 }
 .game-invite span {
   font-size: 18px;
+  margin: 1em 0 .5em 0;
 }
 .game-invite ul {
   display: flex;
@@ -65,6 +90,11 @@
   height: 20vh;
   overflow-y: scroll;
   border: 2px solid gray;
+  border-radius: 5px;
+}
+
+#game-players-ul li {
+  height: 8vh;
 }
 
 
@@ -73,6 +103,7 @@
 
 .game-invite li {
   border: 2px solid gray;
+  border-radius: 5px;
   margin: 2em .5em;
   width: 12vw;
   height: 12vh;
@@ -102,4 +133,71 @@
 .game-invite .invited {
   background-color: rgba(109, 5, 5, 0.486);
   color: white;
+}
+
+
+/* RoleSelection */
+
+.roles-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100vw;
+  height: 100%;
+}
+.roles-wrapper h1 {
+  margin: 0 0 .3em 0;
+}
+
+.evil-and-death-wrapper,
+.evil-and-death-wrapper ul,
+.good-roles-wrapper,
+.good-roles-wrapper ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.roles-wrapper li {
+  width: 13vw;
+  height: 28vh;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: .5em 2em;
+  cursor: pointer;
+}
+
+.role-img {
+  width: 100%;
+  height: 70%;
+}
+.role-name {
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.evil-and-death-wrapper li#Death {
+  background-color: rgb(148, 143, 143);
+}
+/* .evil-and-death-wrapper li#Death.active {
+  background-color: rgb(148, 143, 143);
+} */
+
+.evil-and-death-wrapper li:not(:first-child) {
+  background-color: rgba(199, 14, 45, 0.842);
+}
+.evil-and-death-wrapper li:not(:first-child).active {
+  background-color: rgba(199, 14, 45, 0.26);
+}
+
+.good-roles-wrapper li {
+  background-color: rgba(15, 104, 207, 0.829);
+}
+.good-roles-wrapper li.active {
+  background-color: rgba(15, 105, 207, 0.308);
 }

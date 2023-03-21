@@ -11,7 +11,7 @@ export default function InviteList() {
   const sessionUser = useSelector(state => state.session.user);
   const invites = useSelector(state => state.invites['invites-received']);
   const invitesArray = invites ? Object.values(invites) : null;
-  console.log('invitesArray', invitesArray);
+  // console.log('invitesArray', invitesArray);
   const [users, setUsers] = useState({});
   const [games, setGames] = useState({});
   const [refresh, setRefresh] = useState(0);
@@ -41,7 +41,7 @@ export default function InviteList() {
     dispatch(loadUserInvites(sessionUser?.id));
     dispatch(loadUsersGames(sessionUser?.id));
   }, [refresh]);
-  console.log('refresh', refresh);
+  // console.log('refresh', refresh);
 
   const myInvites = invitesArray?.filter(invite => {
     return (!invite.accepted & !invite.rejected);
