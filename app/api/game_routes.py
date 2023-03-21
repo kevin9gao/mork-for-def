@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from app.models import User, db, Game, GameInvite
+from app.models.game import members
 from app.forms import GameForm, UpdateGameForm, GameInviteForm
 
 
@@ -111,8 +112,12 @@ def invite_to_game(game_id, invited_id):
 @game_routes.route('/invites/<int:invite_id>/accept', methods=['POST'])
 def accept_invite(invite_id):
     invite = GameInvite.query.get(invite_id)
-    invite.accepted=True
     game = Game.query.get(invite.game_id)
+    players = game.players
+    for player in players:
+        if invite.invited_id == player.id:
+            return
+    invite.accepted=True
     invited = User.query.get(invite.invited_id)
     game.players.append(invited)
     game.num_players += 1

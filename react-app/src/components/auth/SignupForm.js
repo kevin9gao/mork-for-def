@@ -60,7 +60,7 @@ const SignupForm = () => {
 
     if (!validationErrors.length) {
       const data = await dispatch(signUp(username, email, password));
-      console.log('data.errors', data);
+      // console.log('data.errors', data);
     } else {
       setHideErrors(false);
     }

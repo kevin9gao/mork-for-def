@@ -1,4 +1,5 @@
 from .db import db
+from sqlalchemy.orm import Mapped
 
 
 members = db.Table(
@@ -85,11 +86,12 @@ class Game(db.Model):
           'evos_2': [self.evos_2, self.evos_2_status],
           'evos_3': [self.evos_3, self.evos_3_status],
           'evos_4': [self.evos_4, self.evos_4_status],
+          'players': [player.to_dict() for player in self.players],
         }
 
-    players = db.relationship('User',
+    players: Mapped[list['User']] = db.relationship('User',
         secondary=members,
         back_populates='games'
         )
 
-    invites = db.relationship('GameInvite', back_populates='game')
+    invites = db.relationship('GameInvite', back_populates='game', cascade='all, delete')
