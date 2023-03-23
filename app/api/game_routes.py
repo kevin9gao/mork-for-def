@@ -74,17 +74,63 @@ def update_game(id):
         game.name=data['name']
         game.phase=data['phase']
         game.active=data['active']
-        roles = ['death', 'time_shifter', 'cultist', 'necromancer', 'disruptor',
-                 'psychic', 'jesus', 'medium', 'mystic', 'antideath', 'villager_1',
-                 'villager_2', 'villager_3', 'villager_4', 'villager_5', 'evos_1',
-                 'evos_2', 'evos_3', 'evos_4']
-        # print('-------------DEATH-----------', game.death, data['death'])
-        for role in roles:
-            try:
-                game[role]=data[role]
-                game[f'{role}_status']=data[f'{role}_status']
-            except:
-                continue
+        try:
+            game.death=data['death']
+            game.death_status=data['death_status']
+            game.time_shifter=data['time_shifter']
+            game.time_shifter_status=data['time_shifter_status']
+            game.cultist=data['cultist']
+            game.cultist_status=data['cultist_status']
+            game.necromancer=data['necromancer']
+            game.necromancer_status=data['necromancer_status']
+            game.disruptor=data['disruptor']
+            game.disruptor_status=data['disruptor_status']
+            game.psychic=data['psychic']
+            game.psychic_status=data['psychic_status']
+            game.jesus=data['jesus']
+            game.jesus_status=data['jesus_status']
+            game.medium=data['medium']
+            game.medium_status=data['medium_status']
+            game.mystic=data['mystic']
+            game.mystic_status=data['mystic_status']
+            game.antideath=data['antideath']
+            game.antideath_status=data['antideath_status']
+            game.villager_1=data['villager_1']
+            game.villager_1_status=data['villager_1_status']
+            game.villager_2=data['villager_2']
+            game.villager_2_status=data['villager_2_status']
+            game.villager_3=data['villager_3']
+            game.villager_3_status=data['villager_3_status']
+            game.villager_4=data['villager_4']
+            game.villager_4_status=data['villager_4_status']
+            game.villager_5=data['villager_5']
+            game.villager_5_status=data['villager_5_status']
+            game.evos_1=data['evos_1']
+            game.evos_1_status=data['evos_1_status']
+            game.evos_2=data['evos_2']
+            game.evos_2_status=data['evos_2_status']
+            game.evos_3=data['evos_3']
+            game.evos_3_status=data['evos_3_status']
+            game.evos_4=data['evos_4']
+            game.evos_4_status=data['evos_4_status']
+        except:
+            pass
+        # roles = ['death', 'time_shifter', 'cultist', 'necromancer', 'disruptor',
+        #          'psychic', 'jesus', 'medium', 'mystic', 'antideath', 'villager_1',
+        #          'villager_2', 'villager_3', 'villager_4', 'villager_5', 'evos_1',
+        #          'evos_2', 'evos_3', 'evos_4']
+        # # print('-------------DEATH-----------', game.death, data['death'])
+        # for role in roles:
+        #     try:
+        #         print('---------', role, '----------')
+        #         print('---------', data[role], '----------')
+        #         print('---------', data[f'{role}_status'], '----------')
+        #         print('---------', game[role], '----------')
+        #         game[role]=data[role]
+        #         game[f'{role}_status']=data[f'{role}_status']
+        #     except:
+        #         print('----------------BAD-------------------')
+        #         continue
         db.session.commit()
         return game.to_dict()
 
