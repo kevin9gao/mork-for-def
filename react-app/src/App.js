@@ -12,6 +12,7 @@ import { authenticate } from './store/session';
 import SingleGame from './components/SingleGame';
 import NewGameSetup from './components/NewGame/NewGameSetup';
 import RoleSelection from './components/NewGame/RoleSelection';
+import Infiltrate from './components/NewGame/Infiltrate';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,6 +41,7 @@ function App() {
             <Route path='/home' element={ <Home /> } />
             <Route path='/games/:gameId/setup' element={ <NewGameSetup /> } exact={true} />
             <Route path='/games/:gameId/roles' element={ <RoleSelection /> } exact={true} />
+            <Route path='/games/:gameId/infiltrate' element={ <Infiltrate /> } exact={true} />
             <Route path='/games/:gameId' element={ <SingleGame /> } />
           </Routes>
         </main>
