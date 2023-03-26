@@ -2,37 +2,34 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { loadUsersGames } from "../../store/games";
-import joey from '../../images/joey-morked-for-def.jpg';
-import RoleReveal from "./RoleReveal";
 
 export default function Infiltrate() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { gameId } = useParams();
   const sessionUser = useSelector(state => state.session.user);
+  const { gameId } = useParams();
   const game = useSelector(state => state.games[gameId]);
-  // console.log('gameId', gameId);
-  // console.log('game', game);
 
   useEffect(() => {
     dispatch(loadUsersGames(sessionUser?.id));
   }, []);
 
-  if (sessionUser?.id === game?.death[0]) {
-    return (
-      <div className="infiltrate-wrapper">
-        <RoleReveal game={game} user={sessionUser} />
-      </div>
-    );
-  }
+  if (sessionUser?.id !== game?.death[0]) navigate(`/games/${gameId}/await-infiltrate`);
 
   return (
     <div className="infiltrate-wrapper">
-      <div className="infiltrate-media">
-        <img src={joey} />
-      </div>
-      <div className="infiltrate-text">
-        <span>Awaiting Death's Infiltration...</span>
+      <div className="infiltrate-instructions">
+        <span>
+          Your role is Death. Choose to infiltrate either the evil faction or the
+          good faction.
+        </span>
+        <span>
+          The other players will not be able to see which faction you infiltrate.
+        </span>
+        <span>
+          Based on your decision, one random role from the chosen good or evil
+          roles will be discarded.
+        </span>
       </div>
     </div>
   );

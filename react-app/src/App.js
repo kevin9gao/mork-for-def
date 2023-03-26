@@ -12,6 +12,8 @@ import { authenticate } from './store/session';
 import SingleGame from './components/SingleGame';
 import NewGameSetup from './components/NewGame/NewGameSetup';
 import RoleSelection from './components/NewGame/RoleSelection';
+import AwaitInfiltrate from './components/NewGame/AwaitInfiltrate';
+import RoleReveal from './components/NewGame/RoleReveal';
 import Infiltrate from './components/NewGame/Infiltrate';
 
 function App() {
@@ -41,6 +43,8 @@ function App() {
             <Route path='/home' element={ <Home /> } />
             <Route path='/games/:gameId/setup' element={ <NewGameSetup /> } exact={true} />
             <Route path='/games/:gameId/roles' element={ <RoleSelection /> } exact={true} />
+            <Route path='/games/:gameId/await-infiltrate' element={ <AwaitInfiltrate /> } exact={true} />
+            <Route path='/games/:gameId/role-reveal' element={ <RoleReveal /> } exact={true} />
             <Route path='/games/:gameId/infiltrate' element={ <Infiltrate /> } exact={true} />
             <Route path='/games/:gameId' element={ <SingleGame /> } />
           </Routes>
