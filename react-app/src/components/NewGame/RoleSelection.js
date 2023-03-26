@@ -170,7 +170,7 @@ export default function RoleSelection() {
     console.log('payload', payload)
 
     const updatedGame = await dispatch(updateGame(game?.id, payload));
-    if (updatedGame) navigate(`/games/${game?.id}/infiltrate`);
+    if (updatedGame) navigate(`/games/${game?.id}/await-infiltrate`);
   }
   // console.log('numPlayers', numPlayers);
 

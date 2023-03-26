@@ -43,6 +43,9 @@ export default function GamesList() {
               {(game.phase === 'role-selection') && (
                 <NavLink to={`/games/${game.id}/roles`}>Select Roles</NavLink>
               )}
+              {(game.phase === 'infiltration') && (
+                <NavLink to={`/games/${game.id}/await-infiltrate`}>Play</NavLink>
+              )}
               {(game.phase === 'play') && (
                 <NavLink to={`/games/${game.id}`}>Play</NavLink>
               )}
@@ -68,6 +71,12 @@ export default function GamesList() {
             <div>
               {(game.phase === 'setup') && (
                 <NavLink to={`/games/${game.id}/setup`}>Awaiting Setup...</NavLink>
+              )}
+              {(game.phase === 'role-selection') && (
+                <span>Awaiting Role Selection...</span>
+              )}
+              {(game.phase === 'infiltration') && (
+                <NavLink to={`/games/${game.id}/await-infiltrate`}>Play</NavLink>
               )}
               {(game.phase === 'play') && (
                 <NavLink to={`/games/${game.id}`}>Play</NavLink>

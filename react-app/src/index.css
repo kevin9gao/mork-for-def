@@ -15,6 +15,12 @@ code {
 .app-wrapper {
   height: 100vh;
   background-color: black;
+  overflow-y: hidden;
+  /* z-index: -20; */
+}
+
+main {
+  overflow-y: hidden;
 }
 
 *, a {
