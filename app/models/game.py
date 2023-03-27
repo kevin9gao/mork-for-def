@@ -20,6 +20,7 @@ class Game(db.Model):
     active = db.Column(db.Boolean, nullable=False, default=True)
     creator_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     death = db.Column(db.Integer)
+    death_faction = db.Column(db.String(50))
     time_shifter = db.Column(db.Integer)
     cultist = db.Column(db.Integer)
     necromancer = db.Column(db.Integer)
@@ -67,7 +68,7 @@ class Game(db.Model):
           'phase': self.phase,
           'active': self.active,
           'creator_id': self.creator_id,
-          'death': [self.death, self.death_status],
+          'death': [self.death, self.death_status, self.death_faction],
           'time_shifter': [self.time_shifter, self.time_shifter_status],
           'cultist': [self.cultist, self.cultist_status],
           'necromancer': [self.necromancer, self.necromancer_status],

@@ -115,22 +115,10 @@ def update_game(id):
             game.evos_4_status=data['evos_4_status']
         except:
             pass
-        # roles = ['death', 'time_shifter', 'cultist', 'necromancer', 'disruptor',
-        #          'psychic', 'jesus', 'medium', 'mystic', 'antideath', 'villager_1',
-        #          'villager_2', 'villager_3', 'villager_4', 'villager_5', 'evos_1',
-        #          'evos_2', 'evos_3', 'evos_4']
-        # # print('-------------DEATH-----------', game.death, data['death'])
-        # for role in roles:
-        #     try:
-        #         print('---------', role, '----------')
-        #         print('---------', data[role], '----------')
-        #         print('---------', data[f'{role}_status'], '----------')
-        #         print('---------', game[role], '----------')
-        #         game[role]=data[role]
-        #         game[f'{role}_status']=data[f'{role}_status']
-        #     except:
-        #         print('----------------BAD-------------------')
-        #         continue
+        try:
+            game.death_faction=data['death_faction']
+        except:
+            pass
         db.session.commit()
         return game.to_dict()
 

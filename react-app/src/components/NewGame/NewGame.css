@@ -260,6 +260,46 @@
   align-items: center;
 }
 
+.infiltrate-choices-wrapper {
+  width: 100%;
+  height: 50%;
+}
+.infiltrate-choices-wrapper ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.infiltrate-choices-wrapper li {
+  width: 13vw;
+  height: 30vh;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2em;
+  cursor: pointer;
+}
+.infiltrate-choices-wrapper li#evil {
+  background-color: rgba(199, 14, 45, 0.842);
+}
+.infiltrate-choices-wrapper li#evil.active {
+  background-color: rgba(199, 14, 45, 0.26);
+}
+.infiltrate-choices-wrapper li#good {
+  background-color: rgba(15, 104, 207, 0.829);
+}
+.infiltrate-choices-wrapper li#good.active {
+  background-color: rgba(15, 105, 207, 0.308);
+}
+
+.confirm-btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 
 /* RoleReveal */
 

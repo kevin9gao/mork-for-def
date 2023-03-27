@@ -80,8 +80,11 @@ export const updateGame = (gameId, payload) => async dispatch => {
     body: JSON.stringify(payload)
   });
 
+  // console.log('updateGame thunk payload', payload)
+
   if (res.ok) {
     const game = await res.json();
+    // console.log('updateGame thunk game', game)
     dispatch(update(game));
     return game;
   }

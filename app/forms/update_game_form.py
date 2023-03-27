@@ -8,6 +8,7 @@ class UpdateGameForm(FlaskForm):
     phase = StringField('phase', validators=[DataRequired()])
     active = BooleanField('active', validators=[DataRequired()])
     death = IntegerField('death')
+    death_faction = StringField('death_faction')
     time_shifter = IntegerField('time_shifter')
     cultist = IntegerField('cultist')
     necromancer = IntegerField('necromancer')
