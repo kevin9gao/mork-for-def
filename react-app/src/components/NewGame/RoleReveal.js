@@ -10,18 +10,21 @@ export default function RoleReveal() {
   const sessionUser = useSelector(state => state.session.user);
   const { gameId } = useParams();
   const game = useSelector(state => state.games[gameId]);
+  const [hideCardBack, setHideCardBack] = useState(false);
 
   useEffect(() => {
     dispatch(loadUsersGames(sessionUser.id));
   }, []);
 
-  const [hideCardBack, setHideCardBack] = useState(false);
-
+  // if (game?.death[2]) navigate(`/games/${gameId}/lineup`);
 
   const gameKeys = game ? Object.keys(game) : null;
   const gameValues = game ? Object.values(game) : null;
   const roles = game ? gameValues?.map((value, idx) => {
     if (typeof value === 'object' & value[0] > 0) {
+      // to deal with the to_dict method of games returning the faction for death
+      if (gameKeys[idx] === 'death') return [value[0], value[1], gameKeys[idx], value[2]];
+
       return [...value, gameKeys[idx]];
     }
   }).filter(value => !!value) : null;

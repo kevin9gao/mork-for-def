@@ -46,6 +46,12 @@ export default function GamesList() {
               {(game.phase === 'infiltration') && (
                 <NavLink to={`/games/${game.id}/await-infiltrate`}>Play</NavLink>
               )}
+              {(game.phase === 'role-reveal') && (sessionUser?.id !== game.death[0]) && (
+                <NavLink to={`/games/${game.id}/role-reveal`}>View Role</NavLink>
+              )}
+              {(game.phase === 'role-reveal') && (sessionUser?.id === game.death[0]) && (
+                <NavLink to={`/games/${game.id}/lineup`}>View Lineup</NavLink>
+              )}
               {(game.phase === 'play') && (
                 <NavLink to={`/games/${game.id}`}>Play</NavLink>
               )}
@@ -77,6 +83,12 @@ export default function GamesList() {
               )}
               {(game.phase === 'infiltration') && (
                 <NavLink to={`/games/${game.id}/await-infiltrate`}>Play</NavLink>
+              )}
+              {(game.phase === 'role-reveal') && (sessionUser?.id !== game.death[0]) && (
+                <NavLink to={`/games/${game.id}/role-reveal`}>View Role</NavLink>
+              )}
+              {(game.phase === 'role-reveal') && (sessionUser?.id === game.death[0]) && (
+                <NavLink to={`/games/${game.id}/lineup`}>View Lineup</NavLink>
               )}
               {(game.phase === 'play') && (
                 <NavLink to={`/games/${game.id}`}>Play</NavLink>

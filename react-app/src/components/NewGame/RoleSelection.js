@@ -115,12 +115,20 @@ export default function RoleSelection() {
     }
   }, [selectedGood]);
 
+  const players = game ? Object.values(game.players) : null;
+  const playerIds = [];
+  for (let key in players) {
+    playerIds.push(players[key].id);
+  }
+
   const handleSubmit = async e => {
     e.preventDefault();
 
     // const players = game?.players;
     // console.log('players', players);
-    const deathId = Math.floor(Math.random() * numPlayers);
+    let deathIdx = Math.floor(Math.random() * numPlayers);
+    if (deathIdx >= numPlayers) deathId = numPlayers - 1;
+    const deathId = playerIds[deathIdx];
     // console.log('deathId', deathId);
 
     const payload = {

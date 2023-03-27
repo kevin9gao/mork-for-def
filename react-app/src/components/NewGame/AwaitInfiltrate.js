@@ -20,7 +20,7 @@ export default function AwaitInfiltrate() {
 
   if (sessionUser?.id === game?.death[0]) {
     return navigate(`/games/${gameId}/role-reveal`);
-  }
+  } else if (game?.death[2]) return navigate(`/games/${gameId}/role-reveal`);
 
   return (
     <div className="infiltrate-wrapper">
