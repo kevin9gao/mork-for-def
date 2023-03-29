@@ -381,10 +381,19 @@
   background-color: rgb(148, 143, 143);
 }
 
-.role-card#Cultist {
+.role-card#TimeShifter,
+.role-card#Cultist,
+.role-card#Disruptor,
+.role-card#Necromancer,
+.role-card#EvilHenchman {
   background-color: rgba(199, 14, 45, 0.842);
 }
 
-.role-card#Psychic {
+.role-card#Psychic,
+.role-card#Jesus,
+.role-card#Medium,
+.role-card#Mystic,
+.role-card#Antideath,
+.role-card#Villager {
   background-color: rgba(15, 104, 207, 0.829);
 }

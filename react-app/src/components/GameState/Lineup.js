@@ -23,6 +23,8 @@ export default function Lineup() {
   );
 
   return (
-    <h1>Lineup</h1>
+    <div className="lineup-wrapper">
+      <PlayerTable game={game} />
+    </div>
   );
 }

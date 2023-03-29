@@ -23,16 +23,25 @@ export default function RoleReveal() {
   const roles = game ? gameValues?.map((value, idx) => {
     if (typeof value === 'object' & value[0] > 0) {
       // to deal with the to_dict method of games returning the faction for death
-      if (gameKeys[idx] === 'death') return [value[0], value[1], gameKeys[idx], value[2]];
+      // if (gameKeys[idx] === 'death') return [value[0], value[1], gameKeys[idx], value[2]];
 
       return [...value, gameKeys[idx]];
     }
   }).filter(value => !!value) : null;
   // console.log('gameKeys', gameKeys);
   // console.log('gameValues', gameValues);
-  // console.log('roles', roles);
-  const roleStr = roles?.filter(role => role[0] === sessionUser.id)[0][2];
-  const roleName = roleStr ? roleStr[0].toUpperCase() + roleStr.slice(1) : null;
+  console.log('roles', roles);
+  const roleStr = roles?.filter(role => role[0] === sessionUser.id)[0][3];
+  let roleName;
+  if (roleStr === 'time_shifter') {
+    roleName = 'TimeShifter';
+  } else if (roleStr.startsWith('evos')) {
+    roleName = 'EvilHenchman';
+  } else if (roleStr.startsWith('villager')) {
+    roleName = 'Villager';
+  } else {
+    roleName = roleStr ? roleStr[0].toUpperCase() + roleStr.slice(1) : null;
+  }
   // console.log('roleName', roleName)
   // console.log('typeof roleName', typeof roleName)
 
@@ -40,6 +49,10 @@ export default function RoleReveal() {
     e.preventDefault();
 
     if (roleName === 'Death') navigate(`/games/${gameId}/infiltrate`);
+
+    if (roleName === 'Cultist' || roleName === 'Disruptor' ||
+        roleName === 'TimeShifter' || roleName === 'Necromancer' ||
+        roleName === 'EvilHenchman') navigate(`/games/${gameId}/lineup`);
   }
 
   return (
@@ -58,7 +71,8 @@ export default function RoleReveal() {
             {/* <img src={} /> */}
           </div>
           <div className="role-name">
-            <span>{roleName}</span>
+            <span>{roleName === 'TimeShifter' ? 'Time Shifter' :
+                  roleName === 'EvilHenchman' ? 'Evil Henchman' : roleName}</span>
           </div>
         </div>
       </div>

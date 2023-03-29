@@ -1,11 +1,23 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { loadUsersGames } from "../../store/games";
 
-export default function PlayerTable({ game }) {
+export default function PlayerTable() {
+  const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
+  const { gameId } = useParams();
+  console.log('gameId', gameId);
+  const game = useSelector(state => state.games[gameId]);
+  console.log('game', game);
   const gameKeys = game ? Object.keys(game) : null;
   const gameValues = game ? Object.values(game) : null;
   const playersObj = {};
+
+  useEffect(() => {
+    dispatch(loadUsersGames(sessionUser?.id));
+  }, []);
+
   for (let i = 0; i < game.players.length; i++) {
     const player = game.players[i];
     playersObj[player.id] = player;
@@ -16,20 +28,22 @@ export default function PlayerTable({ game }) {
       return [...val, gameKeys[idx]];
     }
   }).filter(value => !!value) : null;
-  // console.log('rolesObj', rolesObj);
+  console.log('rolesObj', rolesObj);
   // console.log('game.players', game.players)
-  // console.log('playersObj', playersObj)
+  console.log('playersObj', playersObj)
   const roles = {};
   for (let i = 0; i < rolesObj.length; i++) {
     const player = playersObj[rolesObj[i][0]];
     // console.log('player', player);
     roles[player.id] = [playersObj[rolesObj[i][0]], ...rolesObj[i]]
   }
-  // console.log('roles', roles);
+  console.log('roles', roles);
   // console.log('typeof roles', typeof roles);
   const playerIds = Object.keys(roles);
   // console.log('playerIds', playerIds)
   // console.log('typeof playerIds', typeof playerIds)
+
+  if (!game) return null;
 
   return (
     <div className="player table">
@@ -44,11 +58,11 @@ export default function PlayerTable({ game }) {
                                   `${roles[id][0].username} (You)` :
                                   roles[id][0].username}</div>
           <div className={`faction ${roles[id][3] === 'good' ? 'good' : 'evil'}`}>
-            {roles[id][3]}
+            {roles[id][3][0].toUpperCase() + roles[id][3].slice(1)}
           </div>
           <div className={`status ${roles[id][2] === 'alive' ? 'alive' :
                                     roles[id][2] === 'marked' ? 'marked' : 'dead'}`}>
-            {roles[id][2]}
+            {roles[id][2][0].toUpperCase() + roles[id][2].slice(1)}
           </div>
         </div>
       ))}
