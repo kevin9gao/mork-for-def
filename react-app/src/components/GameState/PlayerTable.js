@@ -7,37 +7,39 @@ export default function PlayerTable() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const { gameId } = useParams();
-  console.log('gameId', gameId);
+  // console.log('gameId', gameId);
   const game = useSelector(state => state.games[gameId]);
-  console.log('game', game);
+  // console.log('game', game);
   const gameKeys = game ? Object.keys(game) : null;
   const gameValues = game ? Object.values(game) : null;
   const playersObj = {};
+  const roles = {};
 
   useEffect(() => {
     dispatch(loadUsersGames(sessionUser?.id));
   }, []);
 
-  for (let i = 0; i < game.players.length; i++) {
-    const player = game.players[i];
-    playersObj[player.id] = player;
-  };
-  const rolesObj = game ? gameValues?.map((value, idx) => {
-    if (typeof value === 'object' & value[0] > 0) {
-      const val = value;
-      return [...val, gameKeys[idx]];
+  if (game) {
+    for (let i = 0; i < game.players.length; i++) {
+      const player = game.players[i];
+      playersObj[player.id] = player;
+    };
+    const rolesObj = game ? gameValues?.map((value, idx) => {
+      if (typeof value === 'object' & value[0] > 0) {
+        const val = value;
+        return [...val, gameKeys[idx]];
+      }
+    }).filter(value => !!value) : null;
+    // console.log('rolesObj', rolesObj);
+    // console.log('game.players', game.players)
+    // console.log('playersObj', playersObj)
+    for (let i = 0; i < rolesObj.length; i++) {
+      const player = playersObj[rolesObj[i][0]];
+      // console.log('player', player);
+      roles[player.id] = [playersObj[rolesObj[i][0]], ...rolesObj[i]]
     }
-  }).filter(value => !!value) : null;
-  console.log('rolesObj', rolesObj);
-  // console.log('game.players', game.players)
-  console.log('playersObj', playersObj)
-  const roles = {};
-  for (let i = 0; i < rolesObj.length; i++) {
-    const player = playersObj[rolesObj[i][0]];
-    // console.log('player', player);
-    roles[player.id] = [playersObj[rolesObj[i][0]], ...rolesObj[i]]
   }
-  console.log('roles', roles);
+  // console.log('roles', roles);
   // console.log('typeof roles', typeof roles);
   const playerIds = Object.keys(roles);
   // console.log('playerIds', playerIds)
