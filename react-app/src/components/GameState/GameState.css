@@ -1,0 +1,19 @@
+.lineup-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.faction.good {
+  color: rgb(65, 186, 190);
+}
+.faction.evil {
+  color: rgb(189, 72, 43);
+}
+
+.status.alive {
+  color: rgb(53, 180, 53);
+}

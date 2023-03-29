@@ -37,7 +37,8 @@ main h1 {
 }
 
 .player.table {
-  width: 20vw;
+  width: 25vw;
+  height: 35vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -51,15 +52,24 @@ main h1 {
 .player.headers,
 .player.table .row {
   width: 90%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .headers span,
 .row .name,
+.row .faction,
 .row .status {
-  width: 50%;
+  width: 33.3%;
+  height: 100%;
   display: flex;
   justify-content: center;
   border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .player.headers {
