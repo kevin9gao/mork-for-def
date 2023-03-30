@@ -20,6 +20,7 @@ export default function FriendsList() {
     }
     fetchUsers();
   }, []);
+  console.log('users', users);
 
   useEffect(() => {
     if (sessionUser) dispatch(loadFriendsList(sessionUser.id));
