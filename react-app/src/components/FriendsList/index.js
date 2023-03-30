@@ -1,26 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { befriendUser, loadFriendsList, unfriendUser } from "../../store/users";
+import { befriendUser, loadAllUsers, loadFriendsList, unfriendUser } from "../../store/users";
 import User from "./User";
 import './FriendsList.css';
 
 export default function FriendsList() {
   const dispatch = useDispatch();
-  const [users, setUsers] = useState([]);
+  const users = useSelector(state => state.users);
   const sessionUser = useSelector(state => state.session.user);
   const friends = useSelector(state => state.users.friends);
 
 
   useEffect(() => {
-    async function fetchUsers() {
-      const res = await fetch('/api/users');
-      const data = await res.json();
-      setUsers(data.users);
-    }
-    fetchUsers();
+    dispatch(loadAllUsers());
   }, []);
-  console.log('users', users);
+  // console.log('users', users);
 
   useEffect(() => {
     if (sessionUser) dispatch(loadFriendsList(sessionUser.id));
@@ -28,8 +23,11 @@ export default function FriendsList() {
 
   const friendsIds = friends ? Object.keys(friends) : null;
   const friendsArray = friends ? Object.values(friends) : null;
+  const usersArr = users ? Object.values(users) : null;
 
-  const allUsers = users?.filter(user => user.id !== sessionUser?.id).map(user => {
+  const allUsers = usersArr?.filter(user => {
+    return user.id && user.id !== sessionUser?.id
+  }).map(user => {
     return (
       <User user={user} />
     );
