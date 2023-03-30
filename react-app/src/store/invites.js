@@ -84,7 +84,7 @@ export default function invitesReducer(state = {}, action) {
     case LOAD:
       newState = { ...state };
       if (action.list['invites_sent']) {
-        if (!newState['invites-sent']) newState['invites-sent'] = {};
+        newState['invites-sent'] = {};
         const invitesSent = action.list['invites_sent'];
         invitesSent.forEach(invite => {
           newState['invites-sent'][invite.id] = invite;
