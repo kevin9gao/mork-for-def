@@ -6,6 +6,16 @@ const load = list => ({
   list
 });
 
+export const loadAllUsers = () => async dispatch => {
+  const response = await fetch('/api/users/');
+
+  if (response.ok) {
+    const list = await response.json();
+    dispatch(load(list));
+    return list;
+  }
+}
+
 export const loadFriendsList = (user_id) => async dispatch => {
   const response = await fetch(`/api/users/${user_id}/friends`);
 
@@ -54,6 +64,13 @@ export default function usersReducer(state = {}, action) {
         const friends = action.list.friends;
         friends.forEach(friend => {
           newState['friends'][friend.id] = friend;
+        })
+      }
+
+      if (action.list.users) {
+        newState = { ...state };
+        action.list.users.forEach(user => {
+          newState[user.id] = user;
         })
       }
 
