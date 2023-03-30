@@ -15,6 +15,9 @@ import RoleSelection from './components/NewGame/RoleSelection';
 import AwaitInfiltrate from './components/NewGame/AwaitInfiltrate';
 import RoleReveal from './components/NewGame/RoleReveal';
 import Infiltrate from './components/NewGame/Infiltrate';
+import Lineup from './components/GameState/Lineup';
+import RoleModal from './components/SingleGame/RoleModal';
+import Mark from './components/SingleGame/Mark';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -46,6 +49,17 @@ function App() {
             <Route path='/games/:gameId/await-infiltrate' element={ <AwaitInfiltrate /> } exact={true} />
             <Route path='/games/:gameId/role-reveal' element={ <RoleReveal /> } exact={true} />
             <Route path='/games/:gameId/infiltrate' element={ <Infiltrate /> } exact={true} />
+            <Route path='games/:gameId/mark' element={
+              <>
+                <Mark />
+                <RoleModal />
+              </>
+             } exact={true} />
+            <Route path='/games/:gameId/lineup' element={
+              <>
+                <Lineup />
+                <RoleModal />
+              </> } exact={true} />
             <Route path='/games/:gameId' element={ <SingleGame /> } />
           </Routes>
         </main>

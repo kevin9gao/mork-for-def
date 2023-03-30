@@ -3,6 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { loadUsersGames, updateGame } from "../../store/games";
 
+const EVIL = ['time_shifter', 'cultist', 'necromancer', 'disruptor',
+              'evos_1', 'evos_2', 'evos_3', 'evos_4'];
+const GOOD = ['psychic', 'jesus', 'medium', 'mystic', 'antideath',
+              'villager_1', 'villager_2', 'villager_3', 'villager_4', 'villager_5'];
+
 export default function Infiltrate() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -46,12 +51,12 @@ export default function Infiltrate() {
   const roles = game ? gameValues?.map((value, idx) => {
     if (typeof value === 'object' & value[0] > 0) {
       // to deal with the to_dict method of games returning the faction for death
-      if (gameKeys[idx] === 'death') return [value[0], value[1], gameKeys[idx], value[2]];
+      // if (gameKeys[idx] === 'death') return [value[0], value[1], gameKeys[idx], value[2]];
 
       return [...value, gameKeys[idx]];
     }
   }).filter(value => !!value) : null;
-  const remainingRoles = roles?.filter(role => role[2] !== 'death').map(role => role[2]);
+  const remainingRoles = roles?.filter(role => role[3] !== 'death').map(role => role[3]);
   const players = game ? Object.values(game.players) : null;
   const playerIds = [];
   for (let key in players) {
@@ -91,14 +96,36 @@ export default function Infiltrate() {
       return setHideErrors(false);
     }
 
+    const remainingEvilRoles = [];
+    const remainingGoodRoles = [];
+    for (let i = 0; i < remainingRoles.length; i++) {
+      const role = remainingRoles[i];
+      if (EVIL.includes(role)) remainingEvilRoles.push(role);
+      if (GOOD.includes(role)) remainingGoodRoles.push(role);
+    };
+    // console.log('remainingEvilRoles', remainingEvilRoles)
+    // console.log('remainingGoodRoles', remainingGoodRoles)
+
+    let discarded;
+    if (evil) {
+      let roleIdx = Math.floor(Math.random() * remainingEvilRoles.length);
+      if (roleIdx >= remainingEvilRoles.length) roleIdx = remainingEvilRoles.length;
+      discarded = remainingEvilRoles[roleIdx];
+    } else if (good) {
+      let roleIdx = Math.floor(Math.random() * remainingGoodRoles.length);
+      if (roleIdx >= remainingGoodRoles.length) roleIdx = remainingGoodRoles.length;
+      discarded = remainingGoodRoles[roleIdx];
+    }
+    // console.log('discarded', discarded)
     const roleBook = {};
+
+    const discardedRole = remainingRoles.splice(remainingRoles.indexOf(discarded), 1);
+    // console.log('remainingRoles', remainingRoles)
+    roleBook[discardedRole] = -1;
+
     while (remainingRoles.length > 0) {
       const numPlayers = playerIds.length;
       const role = remainingRoles.pop();
-      if (numPlayers === 0) {
-        roleBook[role] = -1;
-        break;
-      }
       let playerIdx = Math.floor(Math.random() * numPlayers);
       if (playerIdx >= numPlayers) playerIdx = numPlayers - 1;
       const playerId = playerIds.splice(playerIdx, 1)[0];
