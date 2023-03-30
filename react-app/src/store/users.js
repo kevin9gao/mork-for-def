@@ -68,7 +68,6 @@ export default function usersReducer(state = {}, action) {
       }
 
       if (action.list.users) {
-        newState = { ...state };
         action.list.users.forEach(user => {
           newState[user.id] = user;
         })

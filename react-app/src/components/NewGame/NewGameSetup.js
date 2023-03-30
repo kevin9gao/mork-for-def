@@ -21,10 +21,11 @@ export default function NewGameSetup() {
   const [active, setActive] = useState(true);
   const [players, setPlayers] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [refresh, setRefresh] = useState(0);
   // console.log('gameId', gameId)
   // console.log('game', game)
   // console.log('name', name)
-  console.log('phase', phase)
+  // console.log('phase', phase)
   // console.log('active', active)
   // console.log('players', players)
   // console.log('game.name', game?.name)
@@ -43,7 +44,7 @@ export default function NewGameSetup() {
       setPlayers(fetchedGame.players);
     };
     fetchGame();
-  }, []);
+  }, [refresh]);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -80,7 +81,7 @@ export default function NewGameSetup() {
 
   const myFriends = friendsArray?.map(friend => {
     return (
-      <UserInvite user={friend} game={game} />
+      <UserInvite user={friend} game={game} refresh={refresh} setRefresh={setRefresh} />
     );
   })
 

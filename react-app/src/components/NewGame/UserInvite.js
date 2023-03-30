@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { inviteUser } from "../../store/invites";
+import { inviteUser, loadGameInvites } from "../../store/invites";
 
-export default function UserInvite({ user, game }) {
+export default function UserInvite({ user, game, refresh, setRefresh }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const sessionUser = useSelector(state => state.session.user);
@@ -23,7 +23,7 @@ export default function UserInvite({ user, game }) {
     };
 
     dispatch(inviteUser(payload, user.id, game.id));
-    navigate(0);
+    setRefresh(refresh + 1);
   }
 
 
