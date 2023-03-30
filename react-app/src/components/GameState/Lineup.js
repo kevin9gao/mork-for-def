@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { loadUsersGames } from "../../store/games";
 import PlayerTable from "./PlayerTable";
 import './GameState.css';
+import RoleModal from "../SingleGame/RoleModal";
 
 export default function Lineup() {
   const dispatch = useDispatch();
@@ -16,15 +17,24 @@ export default function Lineup() {
     dispatch(loadUsersGames(sessionUser?.id));
   }, []);
 
-  if (sessionUser?.id === game?.death[0]) return (
-    <div className="lineup-wrapper">
-      <PlayerTable game={game} />
-    </div>
-  );
+  const handleFirstMark = e => {
+    e.preventDefault();
+
+    navigate(`/games/${gameId}/mark`);
+  }
+
+  if (sessionUser?.id === game?.death[0] & game?.phase === 'role-reveal') {
+    return (
+      <div className="lineup-wrapper">
+        <PlayerTable />
+        <button onClick={handleFirstMark}>Got it.</button>
+      </div>
+    );
+  }
 
   return (
     <div className="lineup-wrapper">
-      <PlayerTable game={game} />
+      <PlayerTable />
     </div>
   );
 }

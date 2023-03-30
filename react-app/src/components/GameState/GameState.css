@@ -17,3 +17,7 @@
 .status.alive {
   color: rgb(53, 180, 53);
 }
+
+.lineup-wrapper button {
+  margin: 1em;
+}

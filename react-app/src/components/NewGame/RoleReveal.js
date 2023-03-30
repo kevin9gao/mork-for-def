@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Card from '../../images/card-back.jpg';
 import { loadUsersGames } from "../../store/games";
 
-export default function RoleReveal() {
+export default function RoleReveal({ modal, setShowModal }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const sessionUser = useSelector(state => state.session.user);
@@ -46,6 +46,10 @@ export default function RoleReveal() {
 
   const handleGotIt = e => {
     e.preventDefault();
+
+    if (modal) {
+      return setShowModal(false);
+    }
 
     if (roleName === 'Death') navigate(`/games/${gameId}/infiltrate`);
 

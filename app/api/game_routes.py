@@ -114,11 +114,13 @@ def update_game(id):
             game.evos_4=data['evos_4']
             game.evos_4_status=data['evos_4_status']
         except:
-            print('------------------------BAD UPDATE DATA-----------------------------')
+            # print('------------------------BAD UPDATE DATA-----------------------------')
+            pass
         try:
             game.death_faction=data['death_faction']
         except:
-            print('------------------------BAD FACTION DATA-----------------------------')
+            # print('------------------------BAD FACTION DATA-----------------------------')
+            pass
         db.session.commit()
         return game.to_dict()
 
