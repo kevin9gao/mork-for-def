@@ -27,7 +27,7 @@ export default function RoleReveal({ modal, setShowModal }) {
   }).filter(value => !!value) : null;
   // console.log('gameKeys', gameKeys);
   // console.log('gameValues', gameValues);
-  console.log('roles', roles);
+  // console.log('roles', roles);
   const roleStr = roles?.filter(role => role[0] === sessionUser.id)[0][3];
   let roleName;
   if (roleStr) {

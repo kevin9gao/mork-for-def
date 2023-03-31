@@ -17,11 +17,16 @@ import RoleReveal from './components/NewGame/RoleReveal';
 import Infiltrate from './components/NewGame/Infiltrate';
 import Lineup from './components/GameState/Lineup';
 import RoleModal from './components/SingleGame/RoleModal';
-import Mark from './components/SingleGame/Mark';
+import Mark from './components/SingleGame/MarkEvil';
+import { loadAllUsers } from './store/users';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadAllUsers());
+  }, []);
 
   useEffect(() => {
     (async () => {

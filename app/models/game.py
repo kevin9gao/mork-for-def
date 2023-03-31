@@ -106,6 +106,7 @@ class Game(db.Model):
           'evos_3': [self.evos_3, self.evos_3_status, self.evos_3_faction],
           'evos_4': [self.evos_4, self.evos_4_status, self.evos_4_faction],
           'players': [player.to_dict() for player in self.players],
+          'marks': [mark.to_dict() for mark in self.marks],
         }
 
     players: Mapped[list['User']] = db.relationship('User',
@@ -114,3 +115,4 @@ class Game(db.Model):
         )
 
     invites = db.relationship('GameInvite', back_populates='game', cascade='all, delete')
+    marks = db.relationship('Mark', back_populates='game', cascade='all, delete')

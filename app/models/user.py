@@ -43,8 +43,8 @@ class User(db.Model, UserMixin):
                               primaryjoin=id==friendship.c.friend_a_id,
                               secondaryjoin=id==friendship.c.friend_b_id)
     games = db.relationship('Game',
-        secondary=members,
-        back_populates='players')
+            secondary=members,
+            back_populates='players')
     game_invites = db.relationship('GameInvite', back_populates='invited')
 
     def befriend(self, friend):
