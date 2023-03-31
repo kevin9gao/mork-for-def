@@ -3,6 +3,7 @@ const ADD = 'games/ADD';
 const UPDATE = 'games/UPDATE';
 const REMOVE = 'games/REMOVE';
 const ACCEPT = 'games/ACCEPT';
+const MARK = 'games/MARK';
 
 const load = list => ({
   type: LOAD,
@@ -27,6 +28,11 @@ const remove = gameId => ({
 const accept = game => ({
   type: ACCEPT,
   game
+})
+
+const add_mark = mark => ({
+  type: MARK,
+  mark
 })
 
 export const loadAllGames = () => async dispatch => {
@@ -110,6 +116,36 @@ export const acceptGameInvite = gameId => async dispatch => {
   }
 }
 
+export const loadMarks = gameId => async dispatch => {
+  const res = await fetch(`/api/games/${gameId}/marks`);
+
+  if (res.ok) {
+    const list = await res.json();
+    dispatch(load(list));
+    return list;
+  }
+}
+
+export const markPlayer = (gameId, gamePayload, markPayload) => async dispatch => {
+  const gameRes = await fetch(`/api/games/${gameId}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(gamePayload)
+  });
+
+  const markRes = await fetch(`/api/games/${gameId}/mark`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(markPayload)
+  });
+
+  if (gameRes.ok && markRes.ok) {
+    const mark = await markRes.json();
+    dispatch(add_mark(mark));
+    return mark;
+  }
+}
+
 let newState;
 export default function gamesReducer(state = {}, action) {
   switch (action.type) {
@@ -120,6 +156,12 @@ export default function gamesReducer(state = {}, action) {
         const games = action.list['games'];
         games.forEach(game => {
           newState[game.id] = game;
+        })
+      } else if (action.list['marks']) {
+        newState['marks'] = {};
+        const marks = action.list['marks'];
+        marks.forEach(mark => {
+          newState['marks'][mark.id] = mark;
         })
       } else {
         const game = action.list;
@@ -141,6 +183,11 @@ export default function gamesReducer(state = {}, action) {
     case ACCEPT:
       newState = { ...state };
       newState[action.game.id] = action.game;
+      return newState;
+    case MARK:
+      newState = { ...state };
+      if (!newState['marks']) newState['marks'] = {};
+      newState['marks'][action.mark.id] = action.mark;
       return newState;
     default:
       return state;

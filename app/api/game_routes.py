@@ -1,7 +1,7 @@
 from flask import Blueprint, request
-from app.models import User, db, Game, GameInvite
+from app.models import User, db, Game, GameInvite, Mark
 from app.models.game import members
-from app.forms import GameForm, UpdateGameForm, GameInviteForm
+from app.forms import GameForm, UpdateGameForm, GameInviteForm, MarkForm
 
 
 game_routes = Blueprint('games', __name__)
@@ -172,3 +172,25 @@ def get_invites(game_id):
     game = Game.query.get(game_id)
     invites = game.invites
     return {'invites_sent': [invite.to_dict() for invite in invites]}
+
+@game_routes.route('/<int:game_id>/marks')
+def get_marks(game_id):
+    game = Game.query.get(game_id)
+    return {'marks': [mark.to_dict() for mark in game.marks]}
+
+@game_routes.route('/<int:game_id>/mark', methods=['POST'])
+def mark(game_id):
+    game = Game.query.get(game_id)
+    form = MarkForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = form.data
+        mark = Mark(game_id=data['game_id'],
+                    caller_id=data['caller_id'],
+                    caller_name=data['caller_name'],
+                    marked_id=data['marked_id'],
+                    marked_name=data['marked_name'],)
+        db.session.add(mark)
+        game.marks.append(mark)
+        db.session.commit()
+        return mark.to_dict()
