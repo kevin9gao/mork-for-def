@@ -53,9 +53,7 @@ export default function RoleReveal({ modal, setShowModal }) {
 
     if (roleName === 'Death') navigate(`/games/${gameId}/infiltrate`);
 
-    if (roleName === 'Cultist' || roleName === 'Disruptor' ||
-        roleName === 'TimeShifter' || roleName === 'Necromancer' ||
-        roleName === 'EvilHenchman') navigate(`/games/${gameId}/lineup`);
+    navigate(`/games/${gameId}/lineup`);
   }
 
   return (

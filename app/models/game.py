@@ -76,6 +76,7 @@ class Game(db.Model):
     evos_2_faction = db.Column(db.String(50), default='evil')
     evos_3_faction = db.Column(db.String(50), default='evil')
     evos_4_faction = db.Column(db.String(50), default='evil')
+    winner = db.Column(db.String(50), default='none')
 
 
     def to_dict(self):
@@ -107,6 +108,7 @@ class Game(db.Model):
           'evos_4': [self.evos_4, self.evos_4_status, self.evos_4_faction],
           'players': [player.to_dict() for player in self.players],
           'marks': [mark.to_dict() for mark in self.marks],
+          'winner': self.winner,
         }
 
     players: Mapped[list['User']] = db.relationship('User',

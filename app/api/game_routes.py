@@ -116,11 +116,18 @@ def update_game(id):
         except:
             # print('------------------------BAD UPDATE DATA-----------------------------')
             pass
+
         try:
             game.death_faction=data['death_faction']
         except:
             # print('------------------------BAD FACTION DATA-----------------------------')
             pass
+
+        try:
+            game.winner=data['winner']
+        except:
+            pass
+
         db.session.commit()
         return game.to_dict()
 

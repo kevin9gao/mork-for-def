@@ -13,8 +13,8 @@ const LogoutButton = ({ setShowMenu }) => {
   }, []);
 
   const onLogout = async (e) => {
-    await dispatch(logout());
     navigate('/');
+    await dispatch(logout());
     setShowMenu(false);
   };
 
