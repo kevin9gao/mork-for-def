@@ -46,3 +46,4 @@ class UpdateGameForm(FlaskForm):
     evos_2_status = StringField('evos_2_status')
     evos_3_status = StringField('evos_3_status')
     evos_4_status = StringField('evos_4_status')
+    winner = StringField('winner')

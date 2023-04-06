@@ -20,6 +20,10 @@ export default function Lineup() {
   const handleFirstMark = e => {
     e.preventDefault();
 
+    if (sessionUser?.id === game?.death[0]) {
+      return navigate(`/games/${gameId}/first-mark`);
+    }
+
     navigate(`/games/${gameId}/mark`);
   }
 

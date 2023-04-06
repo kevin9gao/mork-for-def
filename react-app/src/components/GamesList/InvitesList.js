@@ -34,7 +34,7 @@ export default function InviteList() {
       setGames(gamesObj);
     }
     fetchGames();
-  }, []);
+  }, [refresh]);
   // console.log('users', users);
 
   useEffect(() => {

@@ -45,10 +45,12 @@ export default function PlayerTable() {
   // console.log('playerIds', playerIds)
   // console.log('typeof playerIds', typeof playerIds)
 
-  if (!game) return null;
+  if (!game || !roles) return null;
 
-  return (
-    <div className="player table">
+  if (roles[sessionUser?.id][3] === 'evil' ||
+      roles[sessionUser?.id][4] === 'death' ||
+      !game?.active) return (
+    <div className="player table evil">
       <div className="player headers">
         <span>Player</span>
         <span>Faction</span>
@@ -57,13 +59,35 @@ export default function PlayerTable() {
       {playerIds.map(id => (
         <div className="row">
           <div className="name">{sessionUser?.id === Number(id) ?
-                                  `${roles[id][0].username} (You)` :
-                                  roles[id][0].username}</div>
+            `${roles[id][0].username} (You)` :
+            roles[id][0].username}</div>
           <div className={`faction ${roles[id][3] === 'good' ? 'good' : 'evil'}`}>
             {roles[id][3][0].toUpperCase() + roles[id][3].slice(1)}
           </div>
           <div className={`status ${roles[id][2] === 'alive' ? 'alive' :
-                                    roles[id][2] === 'marked' ? 'marked' : 'dead'}`}>
+            roles[id][2] === 'marked' ? 'marked' :
+            roles[id][2] === 'caller' ? 'caller' : 'dead'}`}>
+            {roles[id][2][0].toUpperCase() + roles[id][2].slice(1)}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
+  return (
+    <div className="player table good">
+      <div className="player headers">
+        <span>Player</span>
+        <span>Status</span>
+      </div>
+      {playerIds.map(id => (
+        <div className="row">
+          <div className="name">{sessionUser?.id === Number(id) ?
+            `${roles[id][0].username} (You)` :
+            roles[id][0].username}</div>
+          <div className={`status ${roles[id][2] === 'alive' ? 'alive' :
+            roles[id][2] === 'marked' ? 'marked' :
+            roles[id][2] === 'caller' ? 'caller' : 'dead'}`}>
             {roles[id][2][0].toUpperCase() + roles[id][2].slice(1)}
           </div>
         </div>

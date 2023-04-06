@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { loadUsersGames, markPlayer } from "../../store/games";
 import './Game.css';
 
-export default function MarkEvil() {
+export default function MarkEvil({ refresh, setRefresh }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const sessionUser = useSelector(state => state.session.user);
@@ -12,27 +12,6 @@ export default function MarkEvil() {
   const game = useSelector(state => state.games[gameId]);
   const [marked, setMarked] = useState(0);
   const users = useSelector(state => state.users);
-  const [hideErrors, setHideErrors] = useState(true);
-  const [validationErrors, setValidationErrors] = useState([]);
-  const [death, setDeath] = useState(game?.death);
-  const [timeShifter, setTimeShifter] = useState(game?.time_shifter);
-  const [cultist, setCultist] = useState(game?.cultist);
-  const [necromancer, setNecromancer] = useState(game?.necromancer);
-  const [disruptor, setDisruptor] = useState(game?.disruptor);
-  const [psychic, setPsychic] = useState(game?.psychic);
-  const [jesus, setJesus] = useState(game?.jesus);
-  const [medium, setMedium] = useState(game?.medium);
-  const [mystic, setMystic] = useState(game?.mystic);
-  const [antideath, setAntideath] = useState(game?.antideath);
-  const [villager_1, setVillager_1] = useState(game?.villager_1);
-  const [villager_2, setVillager_2] = useState(game?.villager_2);
-  const [villager_3, setVillager_3] = useState(game?.villager_3);
-  const [villager_4, setVillager_4] = useState(game?.villager_4);
-  const [villager_5, setVillager_5] = useState(game?.villager_5);
-  const [evos_1, setEvos_1] = useState(game?.evos_1);
-  const [evos_2, setEvos_2] = useState(game?.evos_2);
-  const [evos_3, setEvos_3] = useState(game?.evos_3);
-  const [evos_4, setEvos_4] = useState(game?.evos_4);
 
   const gameKeys = game ? Object.keys(game) : null;
   const gameValues = game ? Object.values(game) : null;
@@ -73,7 +52,7 @@ export default function MarkEvil() {
 
   const handleMark = id => {
     if (roles[id][2] !== 'dead') setMarked(id);
-  }
+  };
 
   const playersTable = playerIds.map(id => (
     <div key={id}
@@ -90,7 +69,7 @@ export default function MarkEvil() {
         {roles[id][2][0].toUpperCase() + roles[id][2].slice(1)}
       </div>
     </div>
-  ))
+  ));
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -158,10 +137,10 @@ export default function MarkEvil() {
   // if (roles.length > 0) {
   //   console.log('roles[sessionUser?.id][3]', roles[sessionUser?.id][3])
   // }
-  if (!roles) return null;
+  if (!game) return null;
 
   return (
-    <div className="mark-wrapper">
+    <div className="mark-wrapper evil">
       <div className="mark-instructions">
         <span>You are the Caller.</span>
         <span>Choose one player to be Marked for Death.</span>
@@ -178,12 +157,6 @@ export default function MarkEvil() {
       <div>
         <button onClick={handleSubmit}>Confirm.</button>
       </div>
-    </div>
-  );
-
-  return (
-    <div className="mark-wrapper">
-      <h1>Mark</h1>
     </div>
   );
 }

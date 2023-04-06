@@ -9,7 +9,6 @@ import { useDispatch } from 'react-redux';
 import Navbar from './components/Navigation/Navbar';
 import { useEffect, useState } from 'react';
 import { authenticate } from './store/session';
-import SingleGame from './components/SingleGame';
 import NewGameSetup from './components/NewGame/NewGameSetup';
 import RoleSelection from './components/NewGame/RoleSelection';
 import AwaitInfiltrate from './components/NewGame/AwaitInfiltrate';
@@ -19,6 +18,7 @@ import Lineup from './components/GameState/Lineup';
 import RoleModal from './components/SingleGame/RoleModal';
 import Mark from './components/SingleGame/MarkEvil';
 import { loadAllUsers } from './store/users';
+import GameState from './components/GameState/GameState';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -54,18 +54,24 @@ function App() {
             <Route path='/games/:gameId/await-infiltrate' element={ <AwaitInfiltrate /> } exact={true} />
             <Route path='/games/:gameId/role-reveal' element={ <RoleReveal /> } exact={true} />
             <Route path='/games/:gameId/infiltrate' element={ <Infiltrate /> } exact={true} />
-            <Route path='games/:gameId/mark' element={
-              <>
-                <Mark />
-                <RoleModal />
-              </>
-             } exact={true} />
             <Route path='/games/:gameId/lineup' element={
               <>
                 <Lineup />
                 <RoleModal />
               </> } exact={true} />
-            <Route path='/games/:gameId' element={ <SingleGame /> } />
+            <Route path='/games/:gameId/first-mark' element={
+              <>
+                <Mark />
+                <RoleModal />
+              </>
+            } exact={true} />
+            <Route path='/games/:gameId/:phase' element={
+              <>
+                <GameState />
+                <RoleModal />
+              </>
+              } exact={true} />
+            <Route path='/games/:gameId' element={ <GameState /> } />
           </Routes>
         </main>
       </div>
