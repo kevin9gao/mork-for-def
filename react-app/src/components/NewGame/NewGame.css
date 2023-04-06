@@ -385,7 +385,8 @@
 .role-card#Cultist,
 .role-card#Disruptor,
 .role-card#Necromancer,
-.role-card#EvilHenchman {
+.role-card#EvilHenchman,
+.role-card#Evil {
   background-color: rgba(199, 14, 45, 0.842);
 }
 
@@ -394,6 +395,7 @@
 .role-card#Medium,
 .role-card#Mystic,
 .role-card#Antideath,
-.role-card#Villager {
+.role-card#Villager,
+.role-card#Good {
   background-color: rgba(15, 104, 207, 0.829);
 }

@@ -13,11 +13,15 @@ export default function Ending() {
     dispatch(loadUsersGames(sessionUser?.id));
   }, []);
 
+  const winner = game?.winner[0].toUpperCase() + game?.winner.slice(1);
+
   return (
     <div className="ending-wrapper">
       <div className="header">
         <h2>The game is over.</h2>
+        <h3>{winner === 'Death' ? 'Death wins.' : `The ${winner} faction wins.`}</h3>
       </div>
+      <div className="role-card" id={winner}></div>
     </div>
   );
 }
