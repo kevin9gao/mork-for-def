@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired
 class UpdateGameForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
     phase = StringField('phase', validators=[DataRequired()])
-    active = BooleanField('active', validators=[DataRequired()])
+    active = BooleanField('active')
     death = IntegerField('death')
     death_faction = StringField('death_faction')
     time_shifter = IntegerField('time_shifter')

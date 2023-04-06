@@ -186,3 +186,17 @@ main h1 {
 .last-breath-wrapper .headers span {
   margin: 0;
 }
+
+
+/* Ending */
+
+.ending-wrapper,
+.ending-wrapper .header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ending-wrapper > div:first-child {
+  margin: 1em 0;
+}

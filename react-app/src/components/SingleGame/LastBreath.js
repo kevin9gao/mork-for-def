@@ -11,8 +11,6 @@ export default function LastBreath({ refresh, setRefresh }) {
   const sessionUser = useSelector(state => state.session.user);
   const game = useSelector(state => state.games[gameId]);
   const [caller, setCaller] = useState(0);
-  // const [gameOver, setGameOver] = useState(false);
-  const [winner, setWinner] = useState('');
 
   useEffect(() => {
     dispatch(loadUsersGames(sessionUser?.id));
@@ -80,6 +78,7 @@ export default function LastBreath({ refresh, setRefresh }) {
       let evilAlive = false;
       let goodAlive = false;
       let deathAlive = false;
+      let winner = '';
       for (let i = 0; i < alive.length; i++) {
         // console.log('i', i, 'alive[i]', alive[i]);
         if (alive[i][3] === 'evil') evilAlive = true;
@@ -91,17 +90,14 @@ export default function LastBreath({ refresh, setRefresh }) {
       console.log('deathAlive', deathAlive)
       // console.log('alive.length', alive.length)
       if (evilAlive && !(goodAlive && deathAlive)) {
-        // setGameOver(true);
         gameOver = true;
-        setWinner('evil');
+        winner = 'evil';
       } else if (goodAlive && !(evilAlive && deathAlive)) {
-        // setGameOver(true);
         gameOver = true;
-        setWinner('good');
+        winner = 'good';
       } else if (deathAlive && alive.length === 1) {
-        // setGameOver(true);
         gameOver = true;
-        setWinner('death');
+        winner = 'death';
       }
 
       console.log('gameOver', gameOver)
