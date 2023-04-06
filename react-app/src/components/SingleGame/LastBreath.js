@@ -11,7 +11,7 @@ export default function LastBreath({ refresh, setRefresh }) {
   const sessionUser = useSelector(state => state.session.user);
   const game = useSelector(state => state.games[gameId]);
   const [caller, setCaller] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
+  // const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState('');
 
   useEffect(() => {
@@ -71,6 +71,7 @@ export default function LastBreath({ refresh, setRefresh }) {
     e.preventDefault();
 
     if (!!roles) {
+      let gameOver = false;
       const rolesArr = Object.values(roles);
       // console.log('rolesArr', rolesArr)
       const alive = rolesArr.filter(player => player[2] !== 'dead' &&
@@ -90,13 +91,16 @@ export default function LastBreath({ refresh, setRefresh }) {
       console.log('deathAlive', deathAlive)
       // console.log('alive.length', alive.length)
       if (evilAlive && !(goodAlive && deathAlive)) {
-        setGameOver(true);
+        // setGameOver(true);
+        gameOver = true;
         setWinner('evil');
       } else if (goodAlive && !(evilAlive && deathAlive)) {
-        setGameOver(true);
+        // setGameOver(true);
+        gameOver = true;
         setWinner('good');
       } else if (deathAlive && alive.length === 1) {
-        setGameOver(true);
+        // setGameOver(true);
+        gameOver = true;
         setWinner('death');
       }
 
@@ -112,7 +116,8 @@ export default function LastBreath({ refresh, setRefresh }) {
           death_faction: game.death[2],
           death: game.death[0],
           death_status: game.death[0] === 'alive' ? 'alive' :
-            game.death[1] === 'caller' ? 'alive' : game.death[1],
+            game.death[1] === 'caller' ? 'alive' :
+            game.death[1] === 'marked' ? 'dead' : game.death[1],
           time_shifter: game.time_shifter[0],
           time_shifter_status: game.time_shifter[0] === 'alive' ? 'alive' :
             game.time_shifter[1] === 'caller' ? 'alive' : game.time_shifter[1],
@@ -171,7 +176,8 @@ export default function LastBreath({ refresh, setRefresh }) {
 
         console.log('GameState payload', payload)
 
-        // dispatch(updateGame(gameId, payload));
+        dispatch(updateGame(gameId, payload));
+        navigate(`/games/${gameId}/conclusion`);
       }
     } else {
       const payload = {
@@ -238,7 +244,7 @@ export default function LastBreath({ refresh, setRefresh }) {
           game.evos_4[1] === 'marked' ? 'dead' : game.evos_4[1],
       };
 
-      // console.log('payload', payload)
+      console.log('payload', payload)
 
       const updatedGame = await dispatch(updateGame(gameId, payload));
       navigate(`/games/${gameId}/mark`);
