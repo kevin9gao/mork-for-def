@@ -19,6 +19,7 @@ import RoleModal from './components/SingleGame/RoleModal';
 import Mark from './components/SingleGame/MarkEvil';
 import { loadAllUsers } from './store/users';
 import GameState from './components/GameState/GameState';
+import ProfilePage from './components/Profile/ProfilePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,6 +50,7 @@ function App() {
             <Route path='/signup' element={ <SignupForm /> } exact={true} />
             <Route path='/login' element={ <LoginForm /> } exact={true} />
             <Route path='/home' element={ <Home /> } />
+            <Route path='/users/:userId' element={ <ProfilePage /> } exact={true} />
             <Route path='/games/:gameId/setup' element={ <NewGameSetup /> } exact={true} />
             <Route path='/games/:gameId/roles' element={ <RoleSelection /> } exact={true} />
             <Route path='/games/:gameId/await-infiltrate' element={ <AwaitInfiltrate /> } exact={true} />

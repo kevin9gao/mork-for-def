@@ -119,6 +119,25 @@ export const updateUser = (payload, userId) => async dispatch => {
   }
 }
 
+export const uploadProfPic = (payload, userId) => async dispatch => {
+  const formData = new FormData();
+  formData.append('username', payload.username);
+  formData.append('email', payload.email);
+  formData.append('image', payload.image);
+
+  const res = await fetch(`/api/users/${userId}/upload_prof_pic`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'multipart/form-data' },
+    body: formData,
+  });
+
+  if (res.ok) {
+    const user = await res.json();
+    dispatch(update(user));
+    return user;
+  }
+}
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:

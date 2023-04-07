@@ -16,6 +16,7 @@ sqlalchemy = "*"
 Flask-cors = "*"
 Flask-login = "*"
 gunicorn = "*"
+boto3 = "*"
 
 [dev-packages]
 pylint = "*"
