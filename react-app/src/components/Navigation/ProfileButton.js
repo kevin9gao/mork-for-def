@@ -33,6 +33,16 @@ export default function ProfileButton({ user }) {
   useEffect(() => {
     if (!showMenu) return;
 
+    // const closeMenu = () => {
+    //   setShowMenu(false);
+    // };
+
+    // const page = document.querySelectorAll('div:not(.profile-btn)');
+
+    // page.addEventListener('click', closeMenu);
+
+    // return () => page.removeEventListener("click", closeMenu);
+
     const escapeClose = e => {
       if (e.key === 'Escape') {
         setShowMenu(false);
@@ -49,7 +59,7 @@ export default function ProfileButton({ user }) {
   return (
     <>
       <div className="dropdown-wrapper">
-        <button onClick={toggleMenu}>
+        <button onClick={toggleMenu} className="profile-btn">
           <img
             src={profPic}
             className='avatar'
