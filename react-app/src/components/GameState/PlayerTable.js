@@ -39,7 +39,7 @@ export default function PlayerTable() {
       roles[player.id] = [playersObj[rolesObj[i][0]], ...rolesObj[i]]
     }
   }
-  // console.log('roles', roles);
+  console.log('roles', roles);
   // console.log('typeof roles', typeof roles);
   const playerIds = Object.keys(roles);
   // console.log('playerIds', playerIds)
@@ -66,8 +66,11 @@ export default function PlayerTable() {
           </div>
           <div className={`status ${roles[id][2] === 'alive' ? 'alive' :
             roles[id][2] === 'marked' ? 'marked' :
-            roles[id][2] === 'caller' ? 'caller' : 'dead'}`}>
-            {roles[id][2][0].toUpperCase() + roles[id][2].slice(1)}
+            roles[id][2] === 'caller' && roles[id][1] === sessionUser?.id ? 'caller' :
+            roles[id][2] === 'caller' && roles[id][1] !== sessionUser?.id ? 'alive' : 'dead'}`}>
+            {roles[id][2] === 'caller' ?
+              (roles[id][1] === sessionUser?.id ? 'Caller' : 'Alive') :
+              roles[id][2][0].toUpperCase() + roles[id][2].slice(1)}
           </div>
         </div>
       ))}
@@ -87,8 +90,11 @@ export default function PlayerTable() {
             roles[id][0].username}</div>
           <div className={`status ${roles[id][2] === 'alive' ? 'alive' :
             roles[id][2] === 'marked' ? 'marked' :
-            roles[id][2] === 'caller' ? 'caller' : 'dead'}`}>
-            {roles[id][2][0].toUpperCase() + roles[id][2].slice(1)}
+            roles[id][2] === 'caller' && roles[id][1] === sessionUser?.id ? 'caller' :
+            roles[id][2] === 'caller' && roles[id][1] !== sessionUser?.id ? 'alive' : 'dead'}`}>
+            {roles[id][2] === 'caller' ?
+              (roles[id][1] === sessionUser?.id ? 'Caller' : 'Alive') :
+              roles[id][2][0].toUpperCase() + roles[id][2].slice(1)}
           </div>
         </div>
       ))}

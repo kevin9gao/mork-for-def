@@ -23,8 +23,10 @@ def edit_user(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     print('-------FORM DATA---------', form.data)
     if form.validate_on_submit():
+        print('-------VALIDATED---------')
         data = form.data
-        user.profile_pic_url = data['profile_pic_url']
+        user.username=data['username']
+        user.profile_pic_url=data['profile_pic_url']
         db.session.commit()
         return user.to_dict()
 

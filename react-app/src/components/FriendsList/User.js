@@ -46,7 +46,9 @@ export default function User({ user }) {
       <div className="follow-btn">
         <button
           onClick={handleFriend}
-          className={isFriend ? 'friend' : 'not-friend'}
+          className={`${isFriend ?
+                    'friend bg-red-500 hover:bg-red-400 text-white font-bold py-4 px-4 border-b-4 border-red-700 hover:border-red-500 rounded' :
+                    'not-friend bg-blue-500 hover:bg-blue-400 text-white font-bold py-4 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded'}`}
           >
           {isFriend ? 'Remove Friend' : 'Add Friend'}
         </button>

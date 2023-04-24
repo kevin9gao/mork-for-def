@@ -36,7 +36,7 @@ export default function GamesList() {
               <span>Players</span>
               <span>{game.num_players}</span>
             </div>
-            <div>
+            <div className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
               {(game.phase === 'setup') && (
                 <NavLink to={`/games/${game.id}/setup`}>Finish Setup</NavLink>
               )}
@@ -77,7 +77,7 @@ export default function GamesList() {
               <span>Players</span>
               <span>{game.num_players}</span>
             </div>
-            <div>
+            <div className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-2 border-b-4 border-blue-700 hover:border-blue-500 rounded">
               {(game.phase === 'setup') && (
                 <NavLink to={`/games/${game.id}/setup`}>Awaiting Setup...</NavLink>
               )}
@@ -118,7 +118,7 @@ export default function GamesList() {
               <span>Players</span>
               <span>{game.num_players}</span>
             </div>
-            <div>
+            <div className="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
               <NavLink to={`/games/${game.id}`}>View</NavLink>
             </div>
           </div>
