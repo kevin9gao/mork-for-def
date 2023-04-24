@@ -34,9 +34,9 @@
   margin: 1em 0 0 0;
   background-color: rgba(43, 111, 201, 0.705);
 }
-.new-game-form > button:hover {
+/* .new-game-form > button:hover {
   background-color: rgba(47, 29, 151, 0.76);
-}
+} */
 #start-game-btn {
   background-color: rgba(43, 201, 193, 0.705);
 }
@@ -87,7 +87,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  height: 20vh;
+  height: 25vh;
   overflow-y: scroll;
   border: 2px solid gray;
   border-radius: 5px;
@@ -106,7 +106,7 @@
   border-radius: 5px;
   margin: 2em .5em;
   width: 12vw;
-  height: 12vh;
+  height: 15vh;
   display: flex;
   flex-direction: column;
   padding: .5em;

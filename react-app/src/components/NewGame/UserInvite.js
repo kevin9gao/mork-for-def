@@ -52,7 +52,9 @@ export default function UserInvite({ user, game, refresh, setRefresh }) {
         <button
           onClick={handleInvite}
           disabled={invitesArray?.includes(user.id)}
-          className={invitesArray?.includes(user.id) ? 'invited' : 'not-invited'}
+          className={invitesArray?.includes(user.id) ?
+            'invited bg-blue-500 text-white font-bold py-2 px-4 rounded opacity-50 cursor-not-allowed' :
+            'not-invited bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded'}
           >
             {!invitesArray?.includes(user.id) && 'Invite'}
             {invitesArray?.includes(user.id) && 'Invite Sent'}

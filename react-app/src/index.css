@@ -47,17 +47,17 @@ a {
   border-radius: 10px;
 }
 
-button {
+/* button {
   background-color: red;
   padding: 1em;
   border-radius: 20px;
   font-size: 18px;
   color: black;
-}
-button:hover {
+} */
+/* button:hover {
   background-color: rgba(109, 5, 5, 0.486);
   color: white;
-}
+} */
 
 input {
   background-color: rgba(155, 11, 47, 0.644);

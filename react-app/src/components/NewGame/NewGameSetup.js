@@ -136,7 +136,9 @@ export default function NewGameSetup() {
               {gamePlayers}
             </ul>
           </div>
-          <button>Confirm.</button>
+          <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+            Confirm.
+          </button>
         </form>
         {players.length >= 6 && (
           <button onClick={() => setShowModal(true)} id='start-game-btn'>

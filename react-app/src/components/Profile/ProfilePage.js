@@ -3,14 +3,17 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './Profile.css';
 import { updateUser } from "../../store/session";
+import { useParams } from "react-router-dom";
 
 export default function ProfilePage() {
   const dispatch = useDispatch();
+  const { userId } = useParams();
+  const user = useSelector(state => state.users[userId]);
   const sessionUser = useSelector(state => state.session.user);
-  const [profilePic, setProfilePic] = useState(sessionUser?.profile_pic_url);
+  const [profilePic, setProfilePic] = useState(user?.profile_pic_url);
   // const [changeProfPic, setChangeProfPic] = useState(profilePic);
   const [previewPic, setPreviewPic] = useState(profilePic);
-  const [username, setUsername] = useState(sessionUser?.username);
+  const [username, setUsername] = useState(user?.username);
   const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
@@ -45,7 +48,7 @@ export default function ProfilePage() {
     setUpdated(true);
   }
 
-  return (
+  if (Number(userId) === sessionUser?.id) return (
     <div className="profile-page-wrapper">
       <div className="left">
         <div className="preview-avatar-wrapper">
@@ -59,21 +62,41 @@ export default function ProfilePage() {
               <h3>Changes saved.</h3>
             </div>
             <div>
-              <label>Username</label>
+              <label className="mx-4">Username</label>
               <input
                 type="text"
                 value={username}
                 onChange={e => setUsername(e.target.value)} />
             </div>
             <div>
-              <label>Profile Picture URL</label>
+              <label className="mx-4">Profile Picture URL</label>
               <input
                 type="text"
                 value={profilePic}
                 onChange={e => setProfilePic(e.target.value)} />
             </div>
-            <button>Save</button>
+            <button
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              >Save</button>
           </form>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="profile-page-wrapper">
+      <div className="left">
+        <div className="preview-avatar-wrapper">
+          <img src={previewPic} />
+        </div>
+      </div>
+      <div className="right">
+        <div className="form-wrapper">
+          <div>
+            <label className="mx-4">Username</label>
+            <span>{username}</span>
+          </div>
         </div>
       </div>
     </div>

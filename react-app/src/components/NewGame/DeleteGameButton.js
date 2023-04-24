@@ -20,7 +20,7 @@ export default function DeleteGameButton({ game }) {
   return (
     <>
       <button
-        className="delete-btn"
+        className="delete-btn m-2 bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
         id="delete-game-btn"
         onClick={() => setShowModal(true)}>
         Cancel Campaign Setup.
@@ -30,7 +30,7 @@ export default function DeleteGameButton({ game }) {
           <h3>Are you sure?</h3>
           <h4>This will delete your game.</h4>
           <button
-            className="delete-btn"
+            className="delete-btn bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
             onClick={handleDelete}>
             Yes, delete my game.
           </button>
