@@ -64,14 +64,13 @@
   align-items: center;
 }
 
-.games-list-ele button {
-  background-color: red;
-  padding: .3em;
-  border-radius: 10px;
-  font-size: 18px;
-  color: black;
+.games-list-ele a {
+  width: 100%;
 }
-.games-list-ele button:hover {
+.games-list-ele button {
+  width: 100%;
+}
+/* .games-list-ele button:hover {
   background-color: rgba(109, 5, 5, 0.486);
   color: white;
-}
+} */
