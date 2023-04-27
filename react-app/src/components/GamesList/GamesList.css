@@ -53,6 +53,30 @@
   height: 50%;
 }
 
+.invites-list-ele {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 5vh;
+  margin: .1em;
+}
+.invites-list-ele > div {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.invites-list-ele button {
+  width: 80%;
+}
+.invites-list-ele > div span {
+  height: 50%;
+}
+
 /* InvitesList */
 
 .invite-list-wrapper {

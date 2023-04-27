@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, NavLink } from "react-router-dom";
 import * as sessionActions from '../../store/session';
@@ -8,8 +8,15 @@ import './Navigation.css';
 export default function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const profMenu = useRef(null);
   const [showMenu, setShowMenu] = useState(false);
   const [profPic, setProfPic] = useState(user?.profile_pic_url);
+
+  const closeMenu = e => {
+    if (profMenu.current && showMenu && !profMenu.current.contains(e.target)) {
+      setShowMenu(false);
+    }
+  }
 
   const openMenu = () => {
     if (showMenu) return;
@@ -33,25 +40,19 @@ export default function ProfileButton({ user }) {
   useEffect(() => {
     if (!showMenu) return;
 
-    // const closeMenu = () => {
-    //   setShowMenu(false);
-    // };
+    document.addEventListener('mousedown', closeMenu);
 
-    // const page = document.querySelectorAll('div:not(.profile-btn)');
+    return () => document.removeEventListener('mousedown', closeMenu);
 
-    // page.addEventListener('click', closeMenu);
+    // const escapeClose = e => {
+    //   if (e.key === 'Escape') {
+    //     setShowMenu(false);
+    //   }
+    // }
 
-    // return () => page.removeEventListener("click", closeMenu);
+    // document.onkeydown = e => escapeClose(e);
 
-    const escapeClose = e => {
-      if (e.key === 'Escape') {
-        setShowMenu(false);
-      }
-    }
-
-    document.onkeydown = e => escapeClose(e);
-
-    return () => document.onkeydown = e => {};
+    // return () => document.onkeydown = e => {};
   }, [showMenu]);
 
   // console.log('showMenu', showMenu);
@@ -67,9 +68,14 @@ export default function ProfileButton({ user }) {
           />
         </button>
         {showMenu && (
-          <div className="profile-dropdown">
+          <div
+            className="profile-dropdown border-slate-800 border-2 rounded shadow-md bg-gradient-to-br from-blue-600 from-30% to-red-600 to-70% hover:from-blue-500 hover:from-30% hover:to-red-500 hover:to-70%"
+            ref={profMenu}>
             <p>
-              <NavLink to={`/users/${user?.id}`} className='navbar-links'>
+              <NavLink
+                to={`/users/${user?.id}`}
+                className='navbar-links'
+                onClick={() => setShowMenu(false)}>
                 {user?.username}
               </NavLink>
             </p>

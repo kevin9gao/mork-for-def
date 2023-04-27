@@ -1,3 +1,22 @@
-.login-wrapper form input {
-  color: black;
+.login-wrapper .left {
+  height: 90vh;
+}
+
+.left .form-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+#sign-up-form {
+  height: 100%;
+  width: 50%;
+}
+
+.main#login {
+  height: 90vh;
+  width: 100%;
+}
+
+#login .form-wrapper {
+  width: 19vw;
 }

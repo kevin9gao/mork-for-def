@@ -7,19 +7,6 @@
   align-items: center;
 }
 
-.splash-page-wrapper #signup,
-.splash-page-wrapper #login,
-.login-wrapper button {
-  background-color: red;
-  padding: 1em;
-  border-radius: 20px;
-  font-size: 18px;
-  color: black;
-}
-
-.splash-page-wrapper #signup:hover,
-.splash-page-wrapper #login:hover,
-.login-wrapper button:hover {
-  background-color: rgba(109, 5, 5, 0.486);
-  color: white;
+#splash-page-buttons {
+  width: 15vw;
 }
