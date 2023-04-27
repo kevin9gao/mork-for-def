@@ -36,27 +36,55 @@ export default function GamesList() {
               <span>Players</span>
               <span>{game.num_players}</span>
             </div>
-            <div className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+            <div>
               {(game.phase === 'setup') && (
-                <NavLink to={`/games/${game.id}/setup`}>Finish Setup</NavLink>
+                <NavLink to={`/games/${game.id}/setup`}>
+                  <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                    Finish Setup
+                  </button>
+                </NavLink>
               )}
               {(game.phase === 'role-selection') && (
-                <NavLink to={`/games/${game.id}/roles`}>Select Roles</NavLink>
+                <NavLink to={`/games/${game.id}/roles`}>
+                  <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                    Select Roles
+                  </button>
+                </NavLink>
               )}
               {(game.phase === 'infiltration') && (
-                <NavLink to={`/games/${game.id}/await-infiltrate`}>Play</NavLink>
+                <NavLink to={`/games/${game.id}/await-infiltrate`}>
+                  <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                    Play
+                  </button>
+                </NavLink>
               )}
               {(game.phase === 'role-reveal') && (
-                <NavLink to={`/games/${game.id}/role-reveal`}>View Role</NavLink>
+                <NavLink to={`/games/${game.id}/role-reveal`}>
+                  <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                    View Role
+                  </button>
+                </NavLink>
               )}
               {(game.phase === 'last-breath') && (
-                <NavLink to={`/games/${game.id}/last-breath`}>Play</NavLink>
+                <NavLink to={`/games/${game.id}/last-breath`}>
+                  <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                    Play
+                  </button>
+                </NavLink>
               )}
               {(game.phase === 'mark') && (
-                <NavLink to={`/games/${game.id}/mark`}>Play</NavLink>
+                <NavLink to={`/games/${game.id}/mark`}>
+                  <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                    Play
+                  </button>
+                </NavLink>
               )}
               {(game.phase === 'conclusion') && (
-                <NavLink to={`/games/${game.id}/conclusion`}>Play</NavLink>
+                <NavLink to={`/games/${game.id}/conclusion`}>
+                  <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                    Play
+                  </button>
+                </NavLink>
               )}
             </div>
           </div>
@@ -77,27 +105,51 @@ export default function GamesList() {
               <span>Players</span>
               <span>{game.num_players}</span>
             </div>
-            <div className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-2 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+            <div>
               {(game.phase === 'setup') && (
-                <NavLink to={`/games/${game.id}/setup`}>Awaiting Setup...</NavLink>
+                <NavLink to={`/games/${game.id}/setup`}>
+                  <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-2 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                    Awaiting Setup...
+                  </button>
+                </NavLink>
               )}
               {(game.phase === 'role-selection') && (
                 <span>Awaiting Role Selection...</span>
               )}
               {(game.phase === 'infiltration') && (
-                <NavLink to={`/games/${game.id}/await-infiltrate`}>Play</NavLink>
+                <NavLink to={`/games/${game.id}/await-infiltrate`}>
+                  <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-2 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                    Play
+                  </button>
+                </NavLink>
               )}
               {(game.phase === 'role-reveal') && (
-                <NavLink to={`/games/${game.id}/role-reveal`}>View Role</NavLink>
+                <NavLink to={`/games/${game.id}/role-reveal`}>
+                  <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-2 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                    View Role
+                  </button>
+                </NavLink>
               )}
               {(game.phase === 'last-breath') && (
-                <NavLink to={`/games/${game.id}/last-breath`}>Play</NavLink>
+                <NavLink to={`/games/${game.id}/last-breath`}>
+                  <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-2 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                    Play
+                  </button>
+                </NavLink>
               )}
               {(game.phase === 'mark') && (
-                <NavLink to={`/games/${game.id}/mark`}>Play</NavLink>
+                <NavLink to={`/games/${game.id}/mark`}>
+                  <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-2 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                    Play
+                  </button>
+                </NavLink>
               )}
               {(game.phase === 'conclusion') && (
-                <NavLink to={`/games/${game.id}/conclusion`}>Play</NavLink>
+                <NavLink to={`/games/${game.id}/conclusion`}>
+                  <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-2 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                    Play
+                  </button>
+                </NavLink>
               )}
             </div>
           </div>
@@ -118,8 +170,10 @@ export default function GamesList() {
               <span>Players</span>
               <span>{game.num_players}</span>
             </div>
-            <div className="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-              <NavLink to={`/games/${game.id}`}>View</NavLink>
+            <div>
+              <button className="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                <NavLink to={`/games/${game.id}`}>View</NavLink>
+              </button>
             </div>
           </div>
         </li>

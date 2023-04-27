@@ -21,6 +21,12 @@ export default function ProfilePage() {
     if (profilePic) setPreviewPic(profilePic);
   }, [profilePic]);
 
+  useEffect(() => {
+    if (updated) setUpdated(false);
+  }, []);
+
+  console.log('updated', updated);
+
   // useEffect(() => {
   //   if (!changeProfPic) return;
   //   if (changeProfPic === profilePic) return;
@@ -57,27 +63,33 @@ export default function ProfilePage() {
       </div>
       <div className="right">
         <div className="form-wrapper">
-          <form onSubmit={handleSubmit} id="profile-form">
-            <div hidden={!updated}>
+          <form
+            className="bg-slate-600 shadow-md rounded p-8"
+            onSubmit={handleSubmit}
+            id="profile-form">
+            <div
+              className={`flex justify-center ${!updated ? 'hidden' : ''}`}>
               <h3>Changes saved.</h3>
             </div>
-            <div>
+            <div className="m-4">
               <label className="mx-4">Username</label>
               <input
                 type="text"
                 value={username}
                 onChange={e => setUsername(e.target.value)} />
             </div>
-            <div>
+            <div className="m-4">
               <label className="mx-4">Profile Picture URL</label>
               <input
                 type="text"
                 value={profilePic}
                 onChange={e => setProfilePic(e.target.value)} />
             </div>
-            <button
-              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-              >Save</button>
+            <div className="flex justify-center mt-4">
+              <button
+                className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+                >Save</button>
+            </div>
           </form>
         </div>
       </div>
@@ -93,8 +105,8 @@ export default function ProfilePage() {
       </div>
       <div className="right">
         <div className="form-wrapper">
-          <div>
-            <label className="mx-4">Username</label>
+          <div className="flex flex-row items-end">
+            <h3 className="mx-4">Username</h3>
             <span>{username}</span>
           </div>
         </div>

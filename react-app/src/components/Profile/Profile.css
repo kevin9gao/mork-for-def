@@ -31,6 +31,6 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
-#profile-form > div {
-  margin: 1em;
+#profile-form {
+  width: 100%;
 }

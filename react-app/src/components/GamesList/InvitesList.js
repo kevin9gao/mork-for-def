@@ -48,7 +48,7 @@ export default function InviteList() {
   }).map(invite => {
     return (
       <li key={invite.id}>
-        <div className="games-list-ele">
+        <div className="invites-list-ele">
           <div>
             <span>Game Name</span>
             <span>{games[invite.game_id]?.name}</span>
