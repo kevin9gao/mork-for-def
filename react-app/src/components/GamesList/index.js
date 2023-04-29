@@ -29,11 +29,9 @@ export default function GamesList() {
               <span>{game.name}</span>
             </div>
             <div>
-              <span>Phase</span>
               <span>{game.phase}</span>
             </div>
             <div>
-              <span>Players</span>
               <span>{game.num_players}</span>
             </div>
             <div>
@@ -98,11 +96,9 @@ export default function GamesList() {
               <span>{game.name}</span>
             </div>
             <div>
-              <span>Phase</span>
               <span>{game.phase}</span>
             </div>
             <div>
-              <span>Players</span>
               <span>{game.num_players}</span>
             </div>
             <div>
@@ -163,11 +159,9 @@ export default function GamesList() {
               <span>{game.name}</span>
             </div>
             <div>
-              <span>Phase</span>
               <span>Concluded</span>
             </div>
             <div>
-              <span>Players</span>
               <span>{game.num_players}</span>
             </div>
             <div>
@@ -189,6 +183,22 @@ export default function GamesList() {
       <div id="my-games">
         {myGames && (
           <ul id="my-games-ul">
+            <li className="sticky top-0 bg-black">
+              <div className="games-list-ele">
+                <div>
+                  <span>Name</span>
+                </div>
+                <div>
+                  <span>Phase</span>
+                </div>
+                <div>
+                  <span>Players</span>
+                </div>
+                <div>
+                  <span>Action</span>
+                </div>
+              </div>
+            </li>
             {myGames}
           </ul>
         )}
