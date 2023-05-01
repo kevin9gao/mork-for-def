@@ -10,6 +10,7 @@
 .new-game-setup-wrapper {
   width: 100vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -43,6 +44,7 @@
 #start-game-btn:hover {
   background-color: rgba(18, 92, 46, 0.76);
 }
+
 
 .new-game-form > button,
 #start-game-btn,
