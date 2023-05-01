@@ -44,6 +44,7 @@
 .games-list-ele > div {
   width: 25%;
   display: flex;
+  flex-wrap: nowrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -51,6 +52,10 @@
 }
 .games-list-ele > div span {
   height: 50%;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .invites-list-ele {

@@ -43,16 +43,6 @@ export default function ProfileButton({ user }) {
     document.addEventListener('mousedown', closeMenu);
 
     return () => document.removeEventListener('mousedown', closeMenu);
-
-    // const escapeClose = e => {
-    //   if (e.key === 'Escape') {
-    //     setShowMenu(false);
-    //   }
-    // }
-
-    // document.onkeydown = e => escapeClose(e);
-
-    // return () => document.onkeydown = e => {};
   }, [showMenu]);
 
   // console.log('showMenu', showMenu);

@@ -7,9 +7,8 @@ export default function SplashPage() {
   const navigate = useNavigate();
   const sessionUser = useSelector(state => state.session.user);
 
-  useEffect(() => {
-    if (sessionUser) navigate('/home');
-  }, []);
+  // console.log('ON SPLASH PAGE');
+  if (sessionUser) navigate('/home');
 
   return (
     <div className="splash-page-wrapper">

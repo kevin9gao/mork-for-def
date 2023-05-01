@@ -27,7 +27,7 @@ export default function Navbar() {
         <NavLink to='/home'>Home</NavLink>
       </div>
       <div id="middle">
-        <h1>Morked For Def</h1>
+        <h1>Marked For Death</h1>
       </div>
       <div id="right">
         <ProfileButton user={sessionUser} />

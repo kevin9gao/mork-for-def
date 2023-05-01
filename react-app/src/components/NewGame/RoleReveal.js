@@ -79,9 +79,11 @@ export default function RoleReveal({ modal, setShowModal }) {
       </div>
       <div id="role-reveal-btns">
         <div id="show-role-btn">
-          <button onClick={() => setHideCardBack(!hideCardBack)}>
+          <button
+            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+            onClick={() => setHideCardBack(!hideCardBack)}>
             {hideCardBack ? 'Hide Role' : 'Show Role'}
-            </button>
+          </button>
         </div>
         <div id="got-it-btn">
           <button onClick={handleGotIt}>Ok, got it!</button>
