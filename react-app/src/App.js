@@ -37,6 +37,22 @@ function App() {
     })();
   }, []);
 
+  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+  if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+  }
+
+  // Whenever the user explicitly chooses light mode
+  localStorage.theme = 'light'
+
+  // Whenever the user explicitly chooses dark mode
+  localStorage.theme = 'dark'
+
+  // Whenever the user explicitly chooses to respect the OS preference
+  localStorage.removeItem('theme')
+
   if (!loaded) return null;
 
   return (
@@ -47,26 +63,27 @@ function App() {
         </div>
         {!sessionUser && (
           <Routes>
-            <Route path='/' element={ <SplashPage /> } />
-            <Route path='/signup' element={ <SignupForm /> } exact={true} />
-            <Route path='/login' element={ <LoginForm /> } exact={true} />
+            <Route path='/' element={<SplashPage />} />
+            <Route path='/signup' element={<SignupForm />} exact={true} />
+            <Route path='/login' element={<LoginForm />} exact={true} />
           </Routes>
         )}
         {sessionUser && (
           <main>
             <Routes>
-              <Route path='/home' element={ <Home /> } />
-              <Route path='/users/:userId' element={ <ProfilePage /> } />
-              <Route path='/games/:gameId/setup' element={ <NewGameSetup /> } exact={true} />
-              <Route path='/games/:gameId/roles' element={ <RoleSelection /> } exact={true} />
-              <Route path='/games/:gameId/await-infiltrate' element={ <AwaitInfiltrate /> } exact={true} />
-              <Route path='/games/:gameId/role-reveal' element={ <RoleReveal /> } exact={true} />
-              <Route path='/games/:gameId/infiltrate' element={ <Infiltrate /> } exact={true} />
+              <Route path='/' element={<SplashPage />} />
+              <Route path='/home' element={<Home />} />
+              <Route path='/users/:userId' element={<ProfilePage />} />
+              <Route path='/games/:gameId/setup' element={<NewGameSetup />} exact={true} />
+              <Route path='/games/:gameId/roles' element={<RoleSelection />} exact={true} />
+              <Route path='/games/:gameId/await-infiltrate' element={<AwaitInfiltrate />} exact={true} />
+              <Route path='/games/:gameId/role-reveal' element={<RoleReveal />} exact={true} />
+              <Route path='/games/:gameId/infiltrate' element={<Infiltrate />} exact={true} />
               <Route path='/games/:gameId/lineup' element={
                 <>
                   <Lineup />
                   <RoleModal />
-                </> } exact={true} />
+                </>} exact={true} />
               <Route path='/games/:gameId/first-mark' element={
                 <>
                   <Mark />
@@ -78,8 +95,8 @@ function App() {
                   <GameState />
                   <RoleModal />
                 </>
-                } exact={true} />
-              <Route path='/games/:gameId' element={ <GameState /> } />
+              } exact={true} />
+              <Route path='/games/:gameId' element={<GameState />} />
             </Routes>
           </main>
         )}
