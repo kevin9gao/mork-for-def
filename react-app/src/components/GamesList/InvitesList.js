@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadUsersGames } from "../../store/games";
+import { loadGame, loadUsersGames } from "../../store/games";
 import { loadUserInvites } from "../../store/invites";
 import AcceptButton from "./AcceptButton";
 import './GamesList.css';
@@ -43,22 +43,22 @@ export default function InviteList() {
   }, [refresh]);
   // console.log('refresh', refresh);
 
-  const myInvites = invitesArray?.filter(invite => {
+  const myInvites = invitesArray?.filter(async invite => {
+    // const invitedGame = await dispatch(loadGame(invite.game_id));
+    // console.log('invitedGame', invitedGame)
+
     return (!invite.accepted & !invite.rejected);
   }).map(invite => {
     return (
       <li key={invite.id}>
         <div className="invites-list-ele">
           <div>
-            <span>Game Name</span>
             <span>{games[invite.game_id]?.name}</span>
           </div>
           <div>
-            <span>From...</span>
             <span>{users[invite.inviter_id]?.username}</span>
           </div>
           <div>
-            <span>Players</span>
             <span>{games[invite.game_id]?.num_players}</span>
           </div>
           <div>
@@ -73,11 +73,27 @@ export default function InviteList() {
   })
 
   return (
-    <div className="games-list-wrapper">
+    <div className="games-list-wrapper mt-2">
       <h2>Game Invites</h2>
       <div id="my-games">
         {myInvites && (
-          <ul id="my-games-ul">
+          <ul id="my-games-ul" className="invites">
+            <li className="sticky top-0 bg-black">
+              <div className="games-list-ele invites-header">
+                <div>
+                  <span>Name</span>
+                </div>
+                <div>
+                  <span>From</span>
+                </div>
+                <div>
+                  <span>Players</span>
+                </div>
+                <div>
+                  <span>Action</span>
+                </div>
+              </div>
+            </li>
             {myInvites}
           </ul>
         )}

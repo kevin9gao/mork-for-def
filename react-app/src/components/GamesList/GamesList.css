@@ -14,6 +14,7 @@
   height: 38vh;
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -26,25 +27,27 @@
 
 #my-games-ul li {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  border: 2px solid gray;
   margin: .5em;
 }
 
 .games-list-ele {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 5vh;
   margin: .1em;
+  background-color: black;
 }
 .games-list-ele > div {
   width: 25%;
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -52,10 +55,20 @@
 }
 .games-list-ele > div span {
   height: 50%;
-  flex-wrap: nowrap;
+  display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+}
+.games-list-ele a {
+  width: 95%;
+  height: 95%;
+}
+.games-list-ele button {
+  width: 100%;
+  height: 100%;
 }
 
 .invites-list-ele {
@@ -81,6 +94,14 @@
 .invites-list-ele > div span {
   height: 50%;
 }
+.invites-header div:nth-child(-n + 3) {
+  width: 20%;
+  height: 100%;
+}
+.invites-header div:last-child {
+  width: 40%;
+  height: 100%;
+}
 
 /* InvitesList */
 
@@ -93,12 +114,7 @@
   align-items: center;
 }
 
-.games-list-ele a {
-  width: 100%;
-}
-.games-list-ele button {
-  width: 100%;
-}
+
 /* .games-list-ele button:hover {
   background-color: rgba(109, 5, 5, 0.486);
   color: white;
