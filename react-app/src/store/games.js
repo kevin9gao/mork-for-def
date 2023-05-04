@@ -56,10 +56,14 @@ export const loadUsersGames = userId => async dispatch => {
 }
 
 export const loadGame = gameId => async dispatch => {
+  // console.log('loadGame THUNK')
   const res = await fetch(`/api/games/${gameId}`);
+
+  // console.log('loadGame res', res)
 
   if (res.ok) {
     const list = await res.json();
+    // console.log('loadGame list', list)
     dispatch(load(list));
     return list;
   }

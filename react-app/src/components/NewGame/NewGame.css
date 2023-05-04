@@ -89,14 +89,17 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  height: 25vh;
+  height: 22vh;
   overflow-y: scroll;
   border: 2px solid gray;
   border-radius: 5px;
 }
 
 #game-players-ul li {
-  height: 8vh;
+  height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 

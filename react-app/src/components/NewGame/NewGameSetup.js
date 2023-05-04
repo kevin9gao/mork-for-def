@@ -22,6 +22,9 @@ export default function NewGameSetup() {
   const [players, setPlayers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [refresh, setRefresh] = useState(0);
+  const [validationErrors, setValidationErrors] = useState([]);
+  const [hideErrors, setHideErrors] = useState(true);
+
   // console.log('gameId', gameId)
   // console.log('game', game)
   // console.log('name', name)
@@ -46,18 +49,32 @@ export default function NewGameSetup() {
     fetchGame();
   }, [refresh]);
 
+  useEffect(() => {
+    const errors = [];
+
+    if (!name.length) {
+      errors.push('Please give your game a campaign name.');
+    } else if (name.length > 50) {
+      errors.push('Campaign name cannot be more than 50 characters long.');
+    }
+
+    setValidationErrors(errors);
+  }, [name]);
+
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const payload = {
-      name,
-      phase,
-      active,
-    };
+    if (!validationErrors.length) {
+      const payload = {
+        name,
+        phase,
+        active,
+      };
 
-    const updatedGame = await dispatch(updateGame(game.id, payload));
+      const updatedGame = await dispatch(updateGame(game.id, payload));
 
-    if (updatedGame) navigate('/home');
+      if (updatedGame) navigate('/home');
+    } else setHideErrors(false);
   }
 
   const handleGameStart = async e => {
@@ -117,10 +134,17 @@ export default function NewGameSetup() {
 
   return (
     <div className="new-game-setup-wrapper">
-      <div className="form-wrapper py-4 px-2">
+      <div className="form-wrapper py-1 px-2">
         <form className="new-game-form" onSubmit={handleSubmit}>
           <div className="game-header">
             <h2>Campaign Name</h2>
+            <div
+              className="my-2 px-4"
+              hidden={hideErrors}>
+              {validationErrors.map((error, ind) => (
+                <div key={ind} className="text-sm text-red-400">{`* ${error}`}</div>
+              ))}
+            </div>
             <input
               className="shadow appearance-none border rounded w-auto py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
               value={name}

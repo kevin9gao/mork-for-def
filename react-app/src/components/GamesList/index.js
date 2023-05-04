@@ -10,7 +10,7 @@ export default function GamesList() {
   const games = useSelector(state => state.games);
   const gamesArray = games ? Object.values(games) : null;
   // const [gamesArray, setGamesArray] = useState([]);
-  // console.log('gamesArray', gamesArray);
+  console.log('gamesArray', gamesArray);
   // console.log('sessionUser', sessionUser)
 
   useEffect(() => {
@@ -19,7 +19,8 @@ export default function GamesList() {
 
   // TODO: sort games so that finished games are at the bottom
   const myGames = gamesArray?.map(game => {
-    // if (!game.includes('active')) return null;
+
+    if (!game.id) return;
 
     if (game.active & game.creator_id === sessionUser?.id) {
       return (
@@ -178,7 +179,7 @@ export default function GamesList() {
   // console.log('myGames', myGames)
 
   return (
-    <div className="games-list-wrapper">
+    <div className="games-list-wrapper bg-slate-800 rounded">
       <h2>My Games</h2>
       <div id="my-games">
         {myGames && (
