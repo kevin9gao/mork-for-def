@@ -20,6 +20,7 @@ import Mark from './components/SingleGame/MarkEvil';
 import { loadAllUsers } from './store/users';
 import GameState from './components/GameState/GameState';
 import ProfilePage from './components/Profile/ProfilePage';
+import Redirect from './components/SplashPage/Redirect';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -66,6 +67,7 @@ function App() {
             <Route path='/' element={<SplashPage />} />
             <Route path='/signup' element={<SignupForm />} exact={true} />
             <Route path='/login' element={<LoginForm />} exact={true} />
+            <Route path='/*' element={<Redirect />} />
           </Routes>
         )}
         {sessionUser && (
