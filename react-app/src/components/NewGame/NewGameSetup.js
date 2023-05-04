@@ -99,7 +99,7 @@ export default function NewGameSetup() {
         <div className="form-wrapper">
           <form className="new-game-form" onSubmit={handleSubmit}>
             <div className="game-header">
-              <span>Campaign Name</span>
+              <h2>Campaign Name</h2>
               <h3>{game.name}</h3>
             </div>
             <div className="game-invite">
@@ -117,11 +117,12 @@ export default function NewGameSetup() {
 
   return (
     <div className="new-game-setup-wrapper">
-      <div className="form-wrapper">
+      <div className="form-wrapper py-4 px-2">
         <form className="new-game-form" onSubmit={handleSubmit}>
           <div className="game-header">
-            <span>Campaign Name</span>
+            <h2>Campaign Name</h2>
             <input
+              className="shadow appearance-none border rounded w-auto py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
               value={name}
               onChange={e => setName(e.target.value)}
             />
